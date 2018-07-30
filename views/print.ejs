@@ -1,0 +1,29 @@
+<% include partials/header %>
+<div class="container">
+    <div class="row">
+        <div>
+            <a class="btn btn-m" href="/home/">Go Back</a>
+        </div>
+        
+        <div class="row text-left" style="display:flex; flex-wrap: wrap;">
+            <% timeentries.forEach(function(timeentry){%> 
+            <%var timeLink = timeentry.date.replace(/-/g, '_')%>
+            <div class="col-md-3 col-sm-6">
+                    <div class="caption">
+                    <h4>***********************************</h4>
+                    <h4>Date:         <%= timeentry.date %></h4>
+                    <h4>Account Name: <%= timeentry.cust %></h4>
+                    <h4>FTCN Code:    <%= timeentry.ftcn %></h4>
+                    <h4>Bill Code:    <%= timeentry.billcode %></h4>
+                    <h4>Job Number:   <%= timeentry.job %></h4>
+                    <h4>SW/HW AGR:    <%= timeentry.agr %></h4>
+                    <h4>Time From/To: <%= timeentry.time %></h4>
+                    <h4>Total Time:   <%= timeentry.totaltime %></h4>
+                    <h4>Modem/Client: <%= timeentry.mco %></h4>
+                    <h4>Description:  <%= timeentry.description %></p>
+                    <h4>***********************************</h4>
+                    </div>
+            </div>
+        <% }) %>
+</div>
+<% include partials/footer %>

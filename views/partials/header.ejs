@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Time Tracking Application</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Fox Wyndrum Time Tracking Application</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                 <% if(!currentUser){ %>
+                        <li><a href="/home">Home</a></li>
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/register">Sign Up</a></li>
+                <%  } else { %>
+                        <li><a href="/home">Home</a></li>
+                        <li><a href="/home">Signed in as <%= currentUser.username %></a></li>
+                        <li><a href="/logout">Log Out</a></li>
+                <%  } %>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <h1><%= message %></h1>
+        

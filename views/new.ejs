@@ -1,0 +1,45 @@
+<% include ./partials/header %>
+<div class="container">
+    <div class="row">
+        <h1 style="text-align: center;">Create a new Time Entry</h1>
+        <div style="width: 30%; margin: 25px auto;">
+           <form action="/home" method="POST">
+               <div class="form-group">
+                   <input class="form-control" type="date" name="date" >
+               </div>
+               <div class="form-group">
+                   <input class="form-control" type="text" name="cust" placeholder ="Customer: FOX001">
+               </div>
+               <div class="form-group">
+                   <input class="form-control" type="text" name="ftcn" placeholder ="FTCN: SUP">
+               </div>
+               <div class="form-group">
+                   <input class="form-control" type="text" name="billcode" placeholder ="BILL CODE: BIT">
+               </div>
+               <div class="form-group">
+                   <input class="form-control" type="text" name="job" placeholder ="Job Number">
+               </div>
+               <div class="form-group">
+                   <input class="form-control" type="text" name="agr" placeholder = "AGR">
+               </div>
+               <div class="form-group">
+                   <input class="form-control" type=" text" name="time" placeholder ="TIME TO/FROM: 2:00 PM to 3:00 PM">
+               </div>
+               <div class="form-group">
+                   <input class="form-control" type="text" name="totaltime" placeholder ="TOTAL TIME: 1 Hour">
+               </div>
+               <div class="form-group">
+                   <input class="form-control" type="text" name="mco" placeholder ="MCO: Client">
+               </div>
+               <div class="form-group">
+                   <input class="form-control" type="text" name="description" placeholder ="Description">
+               </div>
+               <div class="form-group">
+                   <button class="btn btn-lg btn-primary btn-block">Submit Time Entry!</button>
+               </div>
+            </form> 
+            <a href="/home">Go Back</a>
+        </div>
+    </div>
+</div>
+<% include ./partials/footer %>
