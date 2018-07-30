@@ -11,11 +11,11 @@ var express                     = require("express"),
     passportLocalMongoose       = require("passport-local-mongoose"),
     flash                       = require("connect-flash"),
     User                        = require("./models/user");
-    
-    //requiring routes  
+
+    //requiring routes
     var indexRoutes             = require("./routes/index.js"),
         homeRoutes                 = require("./routes/home");
-    
+
 //==================================================================
 // Mongoose/Body Parser/ View Engine
 //==================================================================
@@ -32,7 +32,7 @@ app.use(flash());
 //==================================================================
 
 app.use(require("express-session")({
-    secret: "Rachel has the cutest booty in the whole wide world, like seriously.",
+    secret: "Rachel is the cutiest cutie in the whole wide world, like seriously.",
     resave: false,
     saveUninitialized: false
 }));
