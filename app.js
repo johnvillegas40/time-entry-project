@@ -60,7 +60,7 @@ app.use("/home", homeRoutes);
 //==================================================================
 // APP.LISTEN Route
 //==================================================================
-
-app.listen(process.env.PORT, process.env.IP, function(){
+// process.env.PORT
+app.listen(8000, process.env.IP, function(){
     console.log("***The Time Tracking Application has Started.***");
 });
