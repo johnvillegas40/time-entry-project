@@ -1,29 +1,49 @@
 <% include partials/header %>
 <div class="container">
-    <div class="row">
-        <div>
-            <a class="btn btn-m" href="/home/">Go Back</a>
+  <div class="row">
+    <div>
+      <a class="btn btn-m" href="/home/">Go Back</a>
+    </div>
+
+    <div class="row text-left" style="display:flex; flex-wrap: wrap;">
+      <% timeentries.forEach(function(timeentry){%> <%var timeLink =
+      timeentry.date.replace(/-/g, '_')%>
+      <div class="col-md-3 col-sm-6">
+        <div class="caption">
+          <h4>***********************************</h4>
+          <h4>Date: <span style="color: red"><%= timeentry.date %></span></h4>
+          <h4>
+            Account Name: <span style="color: red"><%= timeentry.cust %></span>
+          </h4>
+          <h4>
+            FTCN Code: <span style="color: red"><%= timeentry.ftcn %></span>
+          </h4>
+          <h4>
+            Bill Code: <span style="color: red"><%= timeentry.billcode %></span>
+          </h4>
+          <h4>
+            Job Number: <span style="color: red"><%= timeentry.job %></span>
+          </h4>
+          <h4>SW/HW AGR: <%= timeentry.agr %></h4>
+          <h4>
+            Time From/To: <span style="color: red"><%= timeentry.time %></span>
+          </h4>
+          <h4>
+            Total Time:
+            <span style="color: red"><%= timeentry.totaltime %></span>
+          </h4>
+          <h4>
+            Modem/Client: <span style="color: red"><%= timeentry.mco %></span>
+          </h4>
+          <h4>
+            Description:
+            <span style="color: red"><%= timeentry.description %></span>
+          </h4>
+          <h4>***********************************</h4>
         </div>
-        
-        <div class="row text-left" style="display:flex; flex-wrap: wrap;">
-            <% timeentries.forEach(function(timeentry){%> 
-            <%var timeLink = timeentry.date.replace(/-/g, '_')%>
-            <div class="col-md-3 col-sm-6">
-                    <div class="caption">
-                    <h4>***********************************</h4>
-                    <h4>Date:         <%= timeentry.date %></h4>
-                    <h4 style="color: red">Account Name: <%= timeentry.cust %></h4>
-                    <h4 style="color: red">FTCN Code:    <%= timeentry.ftcn %></h4>
-                    <h4 style="color: red">Bill Code:    <%= timeentry.billcode %></h4>
-                    <h4>Job Number:   <%= timeentry.job %></h4>
-                    <h4>SW/HW AGR:    <%= timeentry.agr %></h4>
-                    <h4 style="color: red">Time From/To: <%= timeentry.time %></h4>
-                    <h4 style="color: red">Total Time:   <%= timeentry.totaltime %></h4>
-                    <h4 style="color: red">Modem/Client: <%= timeentry.mco %></h4>
-                    <h4 style="color: red">Description:  <%= timeentry.description %></p>
-                    <h4>***********************************</h4>
-                    </div>
-            </div>
-        <% }) %>
+      </div>
+      <% }) %>
+    </div>
+    <% include partials/footer %>
+  </div>
 </div>
-<% include partials/footer %>
