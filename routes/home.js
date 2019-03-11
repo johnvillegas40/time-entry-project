@@ -161,7 +161,7 @@ router.delete("/:date/:id", middleware.checkTimeEntryOwnership, function(
 });
 
 // delete all time entries
-router.delete("/home", middleware.isLoggedIn, function(req, res) {
+router.delete("/", middleware.isLoggedIn, function(req, res) {
   TimeEntry.remove({ "author.username": req.user.username }, function(err) {
     if (err) {
       res.redirect("/home");
