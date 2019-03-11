@@ -2,7 +2,7 @@
   "name": "time-app",
   "version": "0.0.1",
   "description": "A chat example to showcase how to use `socket.io` with a static `express` server with `async` for control flow.",
-  "main": "server.js",
+  "main": "app.js",
   "repository": {
     "type": "git",
     "url": "na"
@@ -23,7 +23,7 @@
     "socket.io": "~0.9.14"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node app.js"
   },
   "devDependencies": {},
   "keywords": [
