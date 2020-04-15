@@ -21,9 +21,11 @@
             for(var i = 0; i < timeentries.length; i++) { 
               totalHours += timeentries[i].totaltime
             }
+
+            var totalPay = totalHours * 34;
             %>
             <h3>Total Hours: <%= totalHours %></h3>
-            <h3>Total Earned this Work Period: $<%= totalHours * 34 %></h3>
+            <h3>Total Earned this Work Period: $<%= totalPay.toFixed(2) %></h3>
             <h3>Below are the time entries grouped by day:</h3>
         </div>
     </div>
