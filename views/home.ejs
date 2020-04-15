@@ -16,13 +16,19 @@
     
     <div class="row">
         <div class="col-lg-12">
+            <%
+            var totalHours = 0;
+            for(var i = 0; i < timeentries.length; i++) { 
+              totalHours += timeentries[i].totaltime
+            }
+            %>
+            <h3>Total Hours: <%= totalHours %></h3>
             <h3>Below are the time entries grouped by day:</h3>
         </div>
     </div>
     
     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
        <% var timeDates = [];
-          var totalHours;
 
         for(var i = 0; i < timeentries.length; i++) { 
             if(timeDates.includes(timeentries[i].date)){
