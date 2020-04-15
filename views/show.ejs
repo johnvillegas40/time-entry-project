@@ -18,7 +18,7 @@
                     <p><em>Submitted by <%= timeEntry.author.username %></p></em>
                     <% if(currentUser && timeEntry.author.id.equals(currentUser._id)){ %>
                     <a class="btn btn-xs btn-warning" href="/home/<%=timeLink%>/<%= timeEntry._id %>/edit">Edit</a>
-                    <form class="delete-form" action="/home/<%=timeLink%>/<%= timeEntry._id %>?_method=DELETE" method="POST" > 
+                    <form class="delete-form" action="/home/<%=timeLink%>/<%= timeEntry._id %>?_method=DELETE" method="POST" onclick="return confirm('This will delete the Time Entry.');"> 
                         <button class="btn btn-xs btn-danger">Delete</button>
                     </form>
                     <% } %>
