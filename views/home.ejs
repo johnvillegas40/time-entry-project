@@ -6,7 +6,7 @@
             <p>Here is where you can view and enter your time entries.</p>
             <p>
                 <a class="btn btn-primary btn-lg" href="/home/new">Add New Time Entry</a>
-                <form class="delete-form" action="/home?_method=DELETE" method="POST" > 
+                <form class="delete-form" action="/home?_method=DELETE" method="POST" onclick="return confirm('Are you sure you want to delete all of your time entries?');" > 
                     <button class="btn btn-xs btn-danger">Delete All Time Entries</button>
                 </form>
             </p>
