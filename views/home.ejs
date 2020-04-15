@@ -22,6 +22,7 @@
     
     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
        <% var timeDates = [];
+          var totalHours;
 
         for(var i = 0; i < timeentries.length; i++) { 
             if(timeDates.includes(timeentries[i].date)){

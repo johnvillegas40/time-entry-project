@@ -18,7 +18,7 @@ var timeEntrySchema = new mongoose.Schema({
     job: String,
     agr: String,
     time: String,
-    totaltime: String,
+    totaltime: Number,
     mco: String
 });
 
