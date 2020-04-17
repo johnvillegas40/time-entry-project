@@ -41,9 +41,19 @@
             }
         } %>
         <% timeDates.forEach(function(timeDate){ 
+            var dayHours = 0;
+            for(var i = 0; i < timeentries.length; i++){
+                if(timeDate == timeentries[i].date) {
+                    dayHours += timeentries[i].totaltime
+                }
+            }
+            var dayMoney = dayHours * 34;
             var timeLink = timeDate.replace(/-/g, '_')%>
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
+                    <div class="caption">
+                        <h4>$<%= dayMoney.toFixed(2) %></h4>
+                    </div>
                     <div class="caption">
                         <h4><%= timeDate %></h4>
                     </div>
