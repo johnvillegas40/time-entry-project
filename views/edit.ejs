@@ -7,7 +7,7 @@
         <div style="width: 30%; margin: 25px auto;">
            <form action="/home/<%= timeLink%>/<%= timeEntry._id%>?_method=PUT" method="POST">
                <div class="form-group">
-                   <input class="form-control" type="date" name="timeEntry[date]" value="<%= timeEntry.date %>" placeholder ="DATE :MM/DD/YYYY" >
+                   <input class="form-control" type="date" name="timeEntry[date]" value="<%= timeEntry.date %>" placeholder ="DATE :MM/DD/YYYY" required>
                </div>
                <div class="form-group">
                    <input class="form-control" type="text" name="timeEntry[cust]" value="<%= timeEntry.cust %>" placeholder ="Customer: FOX001">
@@ -28,7 +28,7 @@
                    <input class="form-control" type="text" name="timeEntry[time]" value="<%= timeEntry.time %>" placeholder ="TIME TO/FROM: 2:00 PM to 3:00 PM">
                </div>
                <div class="form-group">
-                   <input class="form-control" type="text" name="timeEntry[totaltime]" value="<%= timeEntry.totaltime %>" placeholder ="TOTAL TIME: 1 ">
+                   <input class="form-control" type="number" name="timeEntry[totaltime]" value="<%= timeEntry.totaltime %>" placeholder ="TOTAL TIME: 1 " step="0.01" required>
                </div>
                <div class="form-group">
                    <input class="form-control" type="text" name="timeEntry[mco]" value="<%= timeEntry.mco %>" placeholder ="MCO: Client">
