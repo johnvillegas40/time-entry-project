@@ -36,7 +36,7 @@ Things that would be needed.
 
 1. Add a reminder/task list, evolve it into a reminder task list
    on each day.
-2. Create some sort of export.
+2. Create some sort of export. *Complete/ In the form of Print* 
 3. Create an administrative login, where all timesheets of all users 
    can be seen.
 4. * have the time sheet automatically calculate the total time.
