@@ -37,7 +37,8 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
     billcode = req.body.billcode,
     job = req.body.job,
     agr = req.body.agr,
-    time = req.body.time,
+    starttime = req.body.starttime,
+    endtime = req.body.endtime,
     totaltime = req.body.totaltime,
     mco = req.body.mco;
 
@@ -50,7 +51,8 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
     billcode: billcode,
     job: job,
     agr: agr,
-    time: time,
+    starttime: starttime,
+    endtime: endtime,
     totaltime: totaltime,
     mco: mco
   };
