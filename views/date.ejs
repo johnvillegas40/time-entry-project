@@ -20,6 +20,7 @@
                     <div class="caption">
                         <h4><%= timeentry.date %></h4>
                         <% var startDate = new Date(timeentry.starttime) %>
+                        <% console.log(startDate) %>
                         <% var endDate = new Date(timeentry.endtime) %>
                         <span><h4><%= startDate %> to <%= endDate %></h4></span>
                     </div>
