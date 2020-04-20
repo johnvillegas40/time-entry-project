@@ -42,7 +42,6 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
     totaltime = req.body.totaltime,
     mco = req.body.mco;
 
-  if(req.body.starttime && req.body.endtime) {
     var newTimeEntry = {
       date: date,
       ftcn: ftcn,
@@ -57,20 +56,6 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
       totaltime: totaltime,
       mco: mco
     };
-  } else {
-    var newTimeEntry = {
-      date: date,
-      ftcn: ftcn,
-      description: description,
-      author: author,
-      cust: cust,
-      billcode: billcode,
-      job: job,
-      agr: agr,
-      totaltime: totaltime,
-      mco: mco
-    };
-  }
 
 
   // Create a new Time Entry and save to DB

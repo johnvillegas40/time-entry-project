@@ -17,8 +17,8 @@ var timeEntrySchema = new mongoose.Schema({
     billcode: String,
     job: String,
     agr: String,
-    starttime: Date,
-    endtime: Date,
+    starttime: String,
+    endtime: String,
     totaltime: Number,
     mco: String
 });
