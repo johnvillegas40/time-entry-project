@@ -42,18 +42,36 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
     totaltime = req.body.totaltime,
     mco = req.body.mco;
 
-  var newTimeEntry = {
-    date: date,
-    ftcn: ftcn,
-    description: description,
-    author: author,
-    cust: cust,
-    billcode: billcode,
-    job: job,
-    agr: agr,
-    totaltime: totaltime,
-    mco: mco
-  };
+  if(req.body.starttime && req.body.endtime) {
+    var newTimeEntry = {
+      date: date,
+      ftcn: ftcn,
+      description: description,
+      author: author,
+      cust: cust,
+      billcode: billcode,
+      job: job,
+      agr: agr,
+      starttime: starttime,
+      endtime: endtime,
+      totaltime: totaltime,
+      mco: mco
+    };
+  } else {
+    var newTimeEntry = {
+      date: date,
+      ftcn: ftcn,
+      description: description,
+      author: author,
+      cust: cust,
+      billcode: billcode,
+      job: job,
+      agr: agr,
+      totaltime: totaltime,
+      mco: mco
+    };
+  }
+
 
   // Create a new Time Entry and save to DB
   TimeEntry.create(newTimeEntry, function(err, newlyCreated) {
