@@ -13,7 +13,7 @@
     display: inline;
 }
 @media print {
-    p {
+    #printing {
         color: red !important;
         -webkit-print-color-adjust: exact; 
     }

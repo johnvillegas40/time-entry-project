@@ -11,18 +11,18 @@
       <div class="col-md-3 col-sm-6">
         <div class="caption">
           <h4>***********************************</h4>
-          <h4>Date: <p style="color: red"><%= timeentry.date %></p></h4>
+          <h4>Date: <span id="printing" style="color: red"><%= timeentry.date %></span></h4>
           <h4>
-            Account Name: <p style="color: red"><%= timeentry.cust %></p>
+            Account Name: <span id="printing" style="color: red"><%= timeentry.cust %></span>
           </h4>
           <h4>
-            FTCN Code: <p style="color: red"><%= timeentry.ftcn %></p>
+            FTCN Code: <span id="printing" style="color: red"><%= timeentry.ftcn %></span>
           </h4>
           <h4>
-            Bill Code: <p style="color: red"><%= timeentry.billcode %></p>
+            Bill Code: <span id="printing" style="color: red"><%= timeentry.billcode %></span>
           </h4>
           <h4>
-            Job Number: <p style="color: red"><%= timeentry.job %></p>
+            Job Number: <span id="printing" style="color: red"><%= timeentry.job %></span>
           </h4>
           <h4>SW/HW AGR: <%= timeentry.agr %></h4>
           <!-- <h4>
@@ -30,14 +30,14 @@
           </h4> -->
           <h4>
             Total Time:
-            <p style="color: red"><%= timeentry.totaltime %> Hour[s]</p>
+            <span id="printing" style="color: red"><%= timeentry.totaltime %> Hour[s]</span>
           </h4>
           <!-- <h4>
             Modem/Client: <span style="color: red"><%= timeentry.mco %></span>
           </h4> -->
           <h4>
             Description:
-            <p style="color: red"><%= timeentry.description %></p>
+            <span id="printing" style="color: red"><%= timeentry.description %></span>
           </h4>
           <h4>***********************************</h4>
         </div>
