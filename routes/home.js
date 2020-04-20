@@ -51,8 +51,6 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
     billcode: billcode,
     job: job,
     agr: agr,
-    starttime: starttime,
-    endtime: endtime,
     totaltime: totaltime,
     mco: mco
   };
