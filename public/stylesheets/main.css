@@ -12,3 +12,9 @@
 .delete-form {
     display: inline;
 }
+@media print {
+    p {
+        color: red !important;
+        -webkit-print-color-adjust: exact; 
+    }
+}
