@@ -19,9 +19,7 @@
                 <div class="thumbnail">
                     <div class="caption">
                         <h4><%= timeentry.date %></h4>
-                        <% var startDate = new Date(timeentry.starttime) %>
-                        <% var endDate = new Date(timeentry.endtime) %>
-                        <span><h4><%= startDate %> to <%= endDate %></h4></span>
+                        <span><h4><%= timeentry.starttime %> to <%= timeentry.endtime %></h4></span>
                     </div>
                     <p>
                         <a href="/home/<%=timeLink %>/<%= timeentry._id %>" class="btn btn-primary">More Info</a>
