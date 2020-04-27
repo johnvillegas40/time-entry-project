@@ -21,7 +21,7 @@ var indexRoutes = require("./routes/index.js"),
 //==================================================================
 
 mongoose.connect(
-  "mongodb://dbwrite:dbwrite1@ds121603.mlab.com:21603/fwatimeentry-dev-data"
+  "mongodb://dbwrite:dbwrite1@ds263638.mlab.com:63638/fwatimeentry-dev"
 );
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
