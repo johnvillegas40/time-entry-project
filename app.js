@@ -21,7 +21,7 @@ var indexRoutes = require("./routes/index.js"),
 //==================================================================
 
 mongoose.connect(
-  "mongodb://dbwrite:dbwrite1@ds121603.mlab.com:21603/fwatimeentry"
+  "mongodb://dbwrite:dbwrite1@ds121603.mlab.com:21603/fwatimeentry-dev-data"
 );
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
@@ -65,6 +65,6 @@ app.use("/home", homeRoutes);
 // APP.LISTEN Route
 //==================================================================
 // process.env.PORT
-app.listen(process.env.PORT, process.env.IP, function() {
-  console.log("***The Time Tracking Application has Started.***");
+app.listen(process.env.PORT || 5213, process.env.IP, function() {
+  console.log("***The Time Tracking Application has Started on port 5213.***");
 });
