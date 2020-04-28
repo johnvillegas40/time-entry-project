@@ -1,5 +1,5 @@
 <% include partials/header %>
-<div class="container">
+<!-- <div class="container">
     <header class="jumbotron">
         <div class="container">
             <h1>Welcome to the Time Entry Utility</h1>
@@ -66,5 +66,85 @@
 
 
     </div>
-</div>
+</div> -->
+
+
+
+<main role="main">
+
+    <section class="jumbotron text-center">
+      <div class="container">
+        <div class="row">
+            <div class="col-sm" id="rcorners">
+        <h1>Time Management Application</h1>
+        <hr>
+        <p class="lead text-muted">Here you can see time entries grouped by day, and you can create a time entry, or delete all time entries.</p>
+        <p>
+          <a href="/home/new" class="btn btn-secondary my-2 fwaaccentcolor">Create Entry</a>
+          <a href="#" class="btn btn-secondary my-2 fwaaccentcolor2">Delete All</a>
+        </p>
+    </div>
+    <div class="col-sm" id="rcorners2">
+        <h1>Personal Earnings Tracker</h1>
+        <%
+        var totalHours = 0;
+        for(var i = 0; i < timeentries.length; i++) { 
+          totalHours += timeentries[i].totaltime
+        }
+
+        var totalPay = totalHours * 34;
+        %>
+        <hr>
+        <span id="leftalign">
+        <p>Hours Worked: <%= totalHours %></p>
+        <p>Total Earned: $<%= totalPay.toFixed(2) %></p>
+    </span>
+    </div>
+
+      </div>
+
+    </div>
+    </section>
+  
+    <div class="album py-5 bg-light">
+      <div class="container">
+  
+        <div class="row">
+            <% var timeDates = [];
+
+        for(var i = 0; i < timeentries.length; i++) { 
+            if(timeDates.includes(timeentries[i].date)){
+
+            }else {
+                timeDates[i] = timeentries[i].date;
+            }
+        } %>
+        <% timeDates.forEach(function(timeDate){ 
+            var dayHours = 0;
+            for(var i = 0; i < timeentries.length; i++){
+                if(timeDate == timeentries[i].date) {
+                    dayHours += timeentries[i].totaltime
+                }
+            }
+            var dayMoney = dayHours * 34;
+            var timeLink = timeDate.replace(/-/g, '_')%>
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm fwabordercolor">
+              <div class="card-body">
+                <p class="card-text">Date: <%= timeDate %></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <a href="/home/<%= timeLink %>" class="btn btn-sm btn-outline-secondary">View</a>
+                    <a class="btn btn-sm btn-outline-danger" onclick="alert('Feature Coming Soon')">Delete</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  
+  </main>
 <% include partials/footer %>

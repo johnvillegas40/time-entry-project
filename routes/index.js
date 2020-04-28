@@ -25,6 +25,7 @@ router.post("/register", function(req, res) {
         }
         passport.authenticate("local")(req, res, function(){
             console.log(req.body.username + " has just signed up!");
+            req.flash("joining", "Thanks for joining!");
             res.redirect("/home");
         });
     });
@@ -40,7 +41,7 @@ router.get("/login", function(req, res) {
 router.post("/login", passport.authenticate("local", {
     successRedirect: "/home",
     failureRedirect: "/login",
-    failureFlash: true
+    failureFlash: ("error", "Username/Password incorrect.")
 }), function(req, res) {
 });
 
