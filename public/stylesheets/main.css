@@ -52,6 +52,13 @@ body {
   padding-bottom: 40px;
   /* background-color: #f5f5f5; */
 } 
+#timeentryform {
+  display: -ms-flexbox;
+ -ms-flex-align: center;
+  align-items: center;
+  padding-bottom: 40px;
+  /* background-color: #f5f5f5; */
+} 
 
 .form-signin {
   width: 100%;
