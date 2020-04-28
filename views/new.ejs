@@ -1,5 +1,5 @@
 <% include ./partials/header %>
-<div class="container">
+<!-- <div class="container">
     <div class="row">
         <h1 style="text-align: center;">Create a new Time Entry</h1>
         <div style="width: 30%; margin: 25px auto;">
@@ -44,5 +44,29 @@
             <a href="/home">Go Back</a>
         </div>
     </div>
+</div> -->
+
+
+<form id="loginform" action="/login" class="form-signin" method="POST">
+    <img id="logoimg" class="mb-4" src="https://i.ibb.co/WyNjT67/Fox-Wyndrum-Logo-Small.jpg" alt="" >
+    <div id="rcorners3">
+    
+    <h1 class="h3 mb-3 font-weight-light">Create new entry</h1>
+    <input class="form-control" type="date" name="date" required>
+    <input class="form-control" type="text" name="cust" placeholder ="Customer: FOX001">
+    <input class="form-control" type="text" name="ftcn" placeholder ="FTCN: SUP">
+    <input class="form-control" type="text" name="billcode" placeholder ="BILL CODE: BIT">
+    <input class="form-control" type="text" name="job" placeholder ="Job Number">
+    <input class="form-control" type="text" name="agr" placeholder = "AGR">
+    <input class="form-control" type="time" name="starttime" placeholder ="Start Time: ">
+    <input class="form-control" type="time" name="endtime" placeholder ="End Time: ">
+    <input class="form-control" type="number" name="totaltime" placeholder ="TOTAL TIME: 1 " step="0.01" required>
+    <input class="form-control" type="text" name="mco" placeholder ="MCO: Client">
+    <input class="form-control" type="text" name="description" placeholder ="Description">
+    <div class="bothbuttons2">
+    <button class="btn btn-secondary my-2 fwaaccentcolor">Submit</button>
+    <a href="javascript:history.back()" class="btn btn-secondary my-2 fwaaccentcolor2 ">Cancel</a>
 </div>
+    </div>
+  </form>
 <% include ./partials/footer %>

@@ -80,12 +80,13 @@
         <hr>
         <p class="lead text-muted">Here you can see time entries grouped by day, and you can create a time entry, or delete all time entries.</p>
         <p>
-          <a href="/home/new" class="btn btn-secondary my-2 fwaaccentcolor">Create Entry</a>
+          <div class="bothbuttons">
+            <a href="/home/new" class="btn btn-secondary my-2 fwaaccentcolor">Create Entry</a>
+            <form class="delete-form" action="/home?_method=DELETE" method="POST" onclick="return confirm('This will delete all Time Entries.');" > 
+              <button class="btn btn-secondary my-2 fwaaccentcolor2">Delete All</button>
+            </form>
+          </div>
           
-          <form class="delete-form" action="/home?_method=DELETE" method="POST" onclick="return confirm('This will delete all Time Entries.');" > 
-            <button class="btn btn-secondary my-2 fwaaccentcolor2">Delete All</button>
-            <a href="#" class=""></a>
-          </form>
         </p>
     </div>
     <div class="col-sm" id="rcorners2">

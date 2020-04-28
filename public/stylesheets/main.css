@@ -22,6 +22,13 @@
     text-align: center;
 }
 
+.bothbuttons {
+  float: inline-start;
+}
+.bothbuttons2 {
+  padding-top: 3%;
+  text-align: center;
+}
 
 #logoimg {
   display: block;
@@ -123,9 +130,14 @@ body {
 }
 .fwabordercolor {
   border: 2px solid #295d41;
+  padding: 3%;
 }
 
-
+#rcorners3 {
+  border-radius: 25px;
+  border: 2px solid #295d41;
+  padding: 5%;
+}
 
 #rcorners {
   border-radius: 25px;
