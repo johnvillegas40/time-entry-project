@@ -34,6 +34,7 @@
 html,
 body {
   height: 100%;
+  background-color: #fff;
 }
 
 #loginform {
@@ -153,6 +154,7 @@ body {
   padding-top: 3rem;
   padding-bottom: 3rem;
   margin-bottom: 0;
+
 }
 @media (min-width: 768px) {
   .jumbotron {
