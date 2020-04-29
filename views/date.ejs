@@ -1,35 +1,4 @@
 <% include partials/header %>
-<!-- <% var mainTimeLink = timeentries[0].date.replace(/-/g, '_');%> -->
-<!-- <div class="container">
-    <div class="row">
-        <div>
-            <a class="btn btn-m" href="/home/">Go Back</a>
-        </div>
-        <div class="col-lg-12">
-            <h4>Click <a href="/home/<%= mainTimeLink%>/print">here</a> to view printable format for this day.</h4>
-            <h4>Below are your time Entries:</h4>
-        </div>
-
-    </div>
-    
-    <div class="row text-center" style="display:flex; flex-wrap: wrap;">
-            <% timeentries.forEach(function(timeentry){%> 
-            <%var timeLink = timeentry.date.replace(/-/g, '_')%>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                    <div class="caption">
-                        <h4><%= timeentry.date %></h4>
-                        <span><h4><%= timeentry.starttime %> to <%= timeentry.endtime %></h4></span>
-                    </div>
-                    <p>
-                        <a href="/home/<%=timeLink %>/<%= timeentry._id %>" class="btn btn-primary">More Info</a>
-                    </p>
-                </div>
-            </div>
-        <% }) %>
-    </div>
-</div> -->
-<!-- <% var mainTimeLink = timeentries[0].date.replace(/-/g, '_');%> -->
 <main role="main">
 
     <section class="jumbotron text-center jumbocss">
@@ -72,7 +41,7 @@
     </section>
     <p>
         <div class="page-header mainHeading bothbuttons3">
-            <p><a href="javascript:history.back()"><i class="fa fa-angle-left" aria-hidden="true"></i></a> Individual Time Entries</p>
+            <p><a href="/home"><i class="fa fa-angle-left" aria-hidden="true"></i></a> Individual Time Entries</p>
 
         </div>
     </p>

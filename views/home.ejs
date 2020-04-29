@@ -1,79 +1,7 @@
 <% include partials/header %>
-<!-- <div class="container">
-    <header class="jumbotron">
-        <div class="container">
-            <h1>Welcome to the Time Entry Utility</h1>
-            <p>Here is where you can view and enter your time entries.</p>
-            <p>
-                <a class="btn btn-primary btn-lg" href="/home/new">Add New Time Entry</a>
-                <form class="delete-form" action="/home?_method=DELETE" method="POST" onclick="return confirm('This will delete all Time Entries.');" > 
-                    <button class="btn btn-xs btn-danger">Delete All Time Entries</button>
-                </form>
-            </p>
-        </div>
-    </header>
-    
-    
-    <div class="row">
-        <div class="col-lg-12">
-            <%
-            var totalHours = 0;
-            for(var i = 0; i < timeentries.length; i++) { 
-              totalHours += timeentries[i].totaltime
-            }
-
-            var totalPay = totalHours * 34;
-            %>
-            <h3>Total Hours Worked: <%= totalHours %></h3>
-            <h3>Total Earned in Work Period: $<%= totalPay.toFixed(2) %></h3>
-            <h3>Below are the time entries grouped by day:</h3>
-        </div>
-    </div>
-    
-    <div class="row text-center" style="display:flex; flex-wrap: wrap;">
-       <% var timeDates = [];
-
-        for(var i = 0; i < timeentries.length; i++) { 
-            if(timeDates.includes(timeentries[i].date)){
-
-            }else {
-                timeDates[i] = timeentries[i].date;
-            }
-        } %>
-        <% timeDates.forEach(function(timeDate){ 
-            var dayHours = 0;
-            for(var i = 0; i < timeentries.length; i++){
-                if(timeDate == timeentries[i].date) {
-                    dayHours += timeentries[i].totaltime
-                }
-            }
-            var dayMoney = dayHours * 34;
-            var timeLink = timeDate.replace(/-/g, '_')%>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                    <div>
-                        <h4>$<%= dayMoney.toFixed(2) %></h4>
-                    </div>
-                    <div class="caption">
-                        <h4><%= timeDate %></h4>
-                    </div>
-                    <p>
-                        <a href="/home/<%= timeLink %>" class="btn btn-primary">More Info</a>
-                    </p>
-                </div>
-            </div>
-        <% }) %>
-
-
-    </div>
-</div> -->
-
-
-
 <main role="main">
  
     <section class="jumbotron text-center">
-      <!-- <span><i class="fa fa-chevron-left" style="font-size:30px;color:red;" aria-hidden="false"></i></span> -->
       <div class="container">
         <div class="row">
             <div class="col-sm" id="rcorners">
@@ -144,6 +72,7 @@
                   <div class="btn-group">
                     <a href="/home/<%= timeLink %>" class="btn btn-sm btn-outline-secondary">View</a>
                     <a class="btn btn-sm btn-outline-danger" onclick="alert('Feature Coming Soon')">Delete</a>
+                    <a href="/home/<%= timeLink%>/print" class="btn btn-sm btn-outline-secondary">Print</a>
                   </div>
                 </div>
               </div>

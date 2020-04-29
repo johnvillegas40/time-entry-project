@@ -21,7 +21,13 @@ router.post("/register", function(req, res) {
     var newUser = new User({username: req.body.username});
     User.register(newUser, req.body.password, function(err, user){
         if(err){
-            return res.render("register");
+            if(err.name === 'UserExistsError') {
+                req.flash("registererror", "User already exists.");
+                return res.redirect("/register");
+            } else {
+                return res.redirect("/register");
+            }
+            
         }
         passport.authenticate("local")(req, res, function(){
             console.log(req.body.username + " has just signed up!");
@@ -41,7 +47,7 @@ router.get("/login", function(req, res) {
 router.post("/login", passport.authenticate("local", {
     successRedirect: "/home",
     failureRedirect: "/login",
-    failureFlash: ("error", "Username/Password incorrect.")
+    failureFlash: ("loginerror", "Username/Password incorrect.")
 }), function(req, res) {
 });
 

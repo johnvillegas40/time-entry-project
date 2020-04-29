@@ -1,58 +1,5 @@
 <% include ./partials/header %>
 <%var timeLink = timeEntry.date.replace(/-/g, '_')%>
-<!-- <div class="container">
-    <div class="row">
-        <div class="col-md-9">
-            <div class="thumbnail">
-                <div class="caption-full">
-                    <h4>Date:         <%= timeEntry.date %></h4>
-                    <h4>Account Name: <%= timeEntry.cust %></h4>
-                    <h4>FTCN Code:    <%= timeEntry.ftcn %></h4>
-                    <h4>Bill Code:    <%= timeEntry.billcode %></h4>
-                    <h4>Job Number:   <%= timeEntry.job %></h4>
-                    <h4>SW/HW AGR:    <%= timeEntry.agr %></h4>
-                    <h4>Time From/To: <%= timeEntry.time %></h4>
-                    <h4>Total Time:   <%= timeEntry.totaltime %></h4>
-                    <h4>Modem/Client: <%= timeEntry.mco %></h4>
-                    <h4>Description:  <%= timeEntry.description %></p>
-                    <p><em>Submitted by <%= timeEntry.author.username %></p></em>
-                    <% if(currentUser && timeEntry.author.id.equals(currentUser._id)){ %>
-                    <a class="btn btn-xs btn-warning" href="/home/<%=timeLink%>/<%= timeEntry._id %>/edit">Edit</a>
-                    <form class="delete-form" action="/home/<%=timeLink%>/<%= timeEntry._id %>?_method=DELETE" method="POST" onclick="return confirm('This will delete the Time Entry.');"> 
-                        <button class="btn btn-xs btn-danger">Delete</button>
-                    </form>
-                    <% } %>
-                    <div>
-                        <a class="btn btn-m" href="/home/">Go Back</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-<!-- <form id="timeentryform">
-    <img id="logoimg" class="mb-4" src="https://i.ibb.co/WyNjT67/Fox-Wyndrum-Logo-Small.jpg" alt="" >
-    <div id="rcorners3">
-    
-        
-        <p>Date:         <%= timeEntry.date %></p>
-        <p>Account Name: <%= timeEntry.cust %></p>
-        <p>FTCN Code:    <%= timeEntry.ftcn %></p>
-        <p>Bill Code:    <%= timeEntry.billcode %></p>
-        <h4>Job Number:   <%= timeEntry.job %></p>
-        <p>SW/HW AGR:    <%= timeEntry.agr %></p>
-        <p>Time From/To: <%= timeEntry.time %></p>
-        <p>Total Time:   <%= timeEntry.totaltime %></p>
-        <p>Modem/Client: <%= timeEntry.mco %></p>
-        <p>Description:  <%= timeEntry.description %></p>
-        <p><em>Submitted by <%= timeEntry.author.username %></p></em>
-    <div class="bothbuttons2">
-    <button class="btn btn-secondary my-2 fwaaccentcolor">Submit</button>
-    <a href="javascript:history.back()" class="btn btn-secondary my-2 fwaaccentcolor2 ">Cancel</a>
-</div>
-    </div>
-</form> -->
 <div id="timeentryform"  class="form-signin">
     <img id="logoimg" class="mb-4" src="https://i.ibb.co/WyNjT67/Fox-Wyndrum-Logo-Small.jpg" alt="" >
     <div id="rcorners3">
@@ -73,7 +20,7 @@
     <p><em>Submitted by <%= timeEntry.author.username %></p></em>
     <div class="bothbuttons2">
     <a href="/home/<%=timeLink%>/<%= timeEntry._id %>/edit" class="btn btn-secondary my-2 fwaaccentcolor">Edit</a>
-    <a href="javascript:history.back()" class="btn btn-secondary my-2 fwaaccentcolor">Back</a>
+    <a href="/home/<%=timeLink%>" class="btn btn-secondary my-2 fwaaccentcolor">Back</a>
     <form class="delete-form" action="/home/<%=timeLink%>/<%= timeEntry._id %>?_method=DELETE" method="POST" onclick="return confirm('This will delete the Time Entry.');"> 
         <button class="btn btn-secondary my-2 fwaaccentcolor">Delete</button>
     </form>

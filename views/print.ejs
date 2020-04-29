@@ -1,49 +1,33 @@
 <% include partials/header %>
-<div class="container">
-  <div class="row">
-    <div>
-      <a class="btn btn-m" href="/home/">Go Back</a>
-    </div>
 
-    <div class="row text-left" style="display:flex; flex-wrap: wrap;">
-      <% timeentries.forEach(function(timeentry){%> <%var timeLink =
-      timeentry.date.replace(/-/g, '_')%>
-      <div class="col-md-3 col-sm-6">
-        <div class="caption">
-          <h4>***********************************</h4>
-          <h4>Date: <span id="printing" style="color: red"><%= timeentry.date %></span></h4>
-          <h4>
-            Account Name: <span id="printing" style="color: red"><%= timeentry.cust %></span>
-          </h4>
-          <h4>
-            FTCN Code: <span id="printing" style="color: red"><%= timeentry.ftcn %></span>
-          </h4>
-          <h4>
-            Bill Code: <span id="printing" style="color: red"><%= timeentry.billcode %></span>
-          </h4>
-          <h4>
-            Job Number: <span id="printing" style="color: red"><%= timeentry.job %></span>
-          </h4>
-          <h4>SW/HW AGR: <%= timeentry.agr %></h4>
-          <!-- <h4>
-            Time From/To: <span style="color: red"><%= timeentry.time %></span>
-          </h4> -->
-          <h4>
-            Total Time:
-            <span id="printing" style="color: red"><%= timeentry.totaltime %> Hour[s]</span>
-          </h4>
-          <!-- <h4>
-            Modem/Client: <span style="color: red"><%= timeentry.mco %></span>
-          </h4> -->
-          <h4>
-            Description:
-            <span id="printing" style="color: red"><%= timeentry.description %></span>
-          </h4>
-          <h4>***********************************</h4>
+<main role="main">
+ 
+  <div class="album py-5  bcolor" >
+    <div class="printbutton">
+      <button class="btn btn-secondary my-2 fwaaccentcolor" onclick="window.print();return false;">Print</button>
+      <a href="/home" class="btn btn-secondary my-2 fwaaccentcolor">Go Back</a>
+    </div>
+    
+
+            <% timeentries.forEach(function(timeentry){%> 
+          <%var timeLink = timeentry.date.replace(/-/g, '_')%>
+        <div class="col-md-12 print cardpad">
+          <div class="card mb-4 shadow-sm fwabordercolor">
+            <div class="card-body">
+              <p class="card-text">Date: <span id="printing" style="color: red"><%= timeentry.date %></span></p>
+              <p class="card-text">Account Name: <span id="printing" style="color: red"><%= timeentry.cust %></span></p>
+              <p class="card-text">FTCN Code: <span id="printing" style="color: red"><%= timeentry.ftcn %></span></p>
+              <p class="card-text">Bill Code: <span id="printing" style="color: red"><%= timeentry.billcode %></span></p>
+              <!-- <p class="card-text">Job Number: <span id="printing" style="color: red"><%= timeentry.job %></span></p>
+              <p class="card-text">SW/HW AGR: <span id="printing" style="color: red"><%= timeentry.agr %></span></p> -->
+              <p class="card-text">Total Time: <span id="printing" style="color: red"><%= timeentry.totaltime %> Hour[s]</span></p>
+              <p class="card-text">Description: <span id="printing" style="color: red"><%= timeentry.description %></span></p>
+              </div>
+            </div>
+          </div>
+          <% }) %>
         </div>
       </div>
-      <% }) %>
-    </div>
-    <% include partials/footer %>
-  </div>
-</div>
+
+</main>
+<% include partials/footer %>

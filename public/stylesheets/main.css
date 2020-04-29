@@ -94,6 +94,9 @@ body {
   border-top-right-radius: 0;
 }
 
+#inputRegPassword {
+  margin-bottom: 0px;
+}
 
 
 
@@ -227,4 +230,32 @@ footer p {
 }
 .jumbocss {
   padding-top: 50;
+}
+
+/* override styles when printing */
+@media print {
+  * { overflow: visible !important; } 
+  body {
+    visibility:hidden;
+    height: 100%;
+
+  }
+  .print {
+    visibility:visible;
+    page-break-inside: avoid;
+
+  }
+  
+
+}
+
+
+.printbutton {
+  padding-bottom: 2%;
+  text-align: center;
+}
+
+.cardpad {
+  padding-left: 15%;
+  padding-right: 15%;
 }
