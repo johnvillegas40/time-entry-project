@@ -9,6 +9,7 @@ var express = require("express"),
   LocalStrategy = require("passport-local"),
   methodOverride = require("method-override"),
   passportLocalMongoose = require("passport-local-mongoose"),
+  dotenv = require('dotenv').config(),
   flash = require("connect-flash"),
   User = require("./models/user");
 
@@ -21,7 +22,7 @@ var indexRoutes = require("./routes/index.js"),
 //==================================================================
 
 mongoose.connect(
-  "mongodb://dbwrite:dbwrite1@ds263638.mlab.com:63638/fwatimeentry-dev"
+  `${process.env.DBURI}`
 );
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
@@ -69,6 +70,7 @@ app.use("/home", homeRoutes);
 // APP.LISTEN Route
 //==================================================================
 // process.env.PORT
-app.listen(process.env.PORT || 5213, process.env.IP, function() {
-  console.log("***The Time Tracking Application has Started on port 5213.***");
+app.listen(process.env.PORT, process.env.IP, function() {
+
+  console.log("***The Time Tracking Application has Started.***");
 });
