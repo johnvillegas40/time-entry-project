@@ -1,8 +1,8 @@
 <% include ./partials/header %>
     <form id="loginform" action="/login" class="form-signin" method="POST">
-      <% if(loginerror.length > 0) { %>
+      <% if(error.length > 0) { %>
         <div id="alerting" class="alert alert-danger" role="alert">
-          <strong><%= loginerror %></strong> 
+          <strong><%= error %></strong> 
         </div>
         <% } %>
       <img id="logoimg" class="mb-4" src="https://i.ibb.co/WyNjT67/Fox-Wyndrum-Logo-Small.jpg" alt="" >

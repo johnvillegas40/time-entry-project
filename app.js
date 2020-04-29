@@ -53,8 +53,8 @@ passport.deserializeUser(User.deserializeUser());
 app.use(function(req, res, next) {
   res.locals.currentUser = req.user;
   res.locals.regularMessage = req.flash("regular");
-  res.locals.error = req.flash("error");
   res.locals.loginerror = req.flash("loginerror");
+  res.locals.error = req.flash("error");
   res.locals.registererror = req.flash("registererror");
   res.locals.joining = req.flash("joining");
   next();

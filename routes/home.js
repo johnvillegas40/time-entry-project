@@ -78,7 +78,7 @@ router.get("/:date", middleware.isLoggedIn, function(req, res) {
   req.user;
   //Get all Time Entries from DB
   var timeReg = req.params.date.replace(/_/g, "-"); // puts it back in the DB Format
-  TimeEntry.find({ date: timeReg }, function(err, alltimeentries) {
+  TimeEntry.find({ "author.username": req.user.username, date: timeReg }, function(err, alltimeentries) {
     if (err) {
       console.log(err);
     } else {
