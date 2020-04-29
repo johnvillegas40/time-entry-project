@@ -1,6 +1,6 @@
 <% include ./partials/header %>
 <%var timeLink = timeEntry.date.replace(/-/g, '_')%>
-<div class="container">
+<!-- <div class="container">
     <div class="row">
         <div class="col-md-9">
             <div class="thumbnail">
@@ -29,8 +29,56 @@
             </div>
         </div>
     </div>
+</div> -->
+
+<!-- <form id="timeentryform">
+    <img id="logoimg" class="mb-4" src="https://i.ibb.co/WyNjT67/Fox-Wyndrum-Logo-Small.jpg" alt="" >
+    <div id="rcorners3">
+    
+        
+        <p>Date:         <%= timeEntry.date %></p>
+        <p>Account Name: <%= timeEntry.cust %></p>
+        <p>FTCN Code:    <%= timeEntry.ftcn %></p>
+        <p>Bill Code:    <%= timeEntry.billcode %></p>
+        <h4>Job Number:   <%= timeEntry.job %></p>
+        <p>SW/HW AGR:    <%= timeEntry.agr %></p>
+        <p>Time From/To: <%= timeEntry.time %></p>
+        <p>Total Time:   <%= timeEntry.totaltime %></p>
+        <p>Modem/Client: <%= timeEntry.mco %></p>
+        <p>Description:  <%= timeEntry.description %></p>
+        <p><em>Submitted by <%= timeEntry.author.username %></p></em>
+    <div class="bothbuttons2">
+    <button class="btn btn-secondary my-2 fwaaccentcolor">Submit</button>
+    <a href="javascript:history.back()" class="btn btn-secondary my-2 fwaaccentcolor2 ">Cancel</a>
 </div>
-
-
+    </div>
+</form> -->
+<div id="timeentryform"  class="form-signin">
+    <img id="logoimg" class="mb-4" src="https://i.ibb.co/WyNjT67/Fox-Wyndrum-Logo-Small.jpg" alt="" >
+    <div id="rcorners3">
+    
+    <h1 class="h3 mb-3 font-weight-light">Time Entry Details</h1>
+    <hr>
+    <p>Date: <%= timeEntry.date %></p>
+    <p>Account Name: <%= timeEntry.cust %></p>
+    <p>FTCN Code:    <%= timeEntry.ftcn %></p>
+    <p>Bill Code:    <%= timeEntry.billcode %></p>
+    <p>Job Number:   <%= timeEntry.job %></p>
+    <p>SW/HW AGR:    <%= timeEntry.agr %></p>
+    <p>Start Time: <%= timeEntry.starttime %></p>
+    <p>End Time: <%= timeEntry.endtime %></p>
+    <p>Total Time:   <%= timeEntry.totaltime %></p>
+    <p>Modem/Client: <%= timeEntry.mco %></p>
+    <p>Description:  <%= timeEntry.description %></p>
+    <p><em>Submitted by <%= timeEntry.author.username %></p></em>
+    <div class="bothbuttons2">
+    <a href="/home/<%=timeLink%>/<%= timeEntry._id %>/edit" class="btn btn-secondary my-2 fwaaccentcolor">Edit</a>
+    <a href="javascript:history.back()" class="btn btn-secondary my-2 fwaaccentcolor">Back</a>
+    <form class="delete-form" action="/home/<%=timeLink%>/<%= timeEntry._id %>?_method=DELETE" method="POST" onclick="return confirm('This will delete the Time Entry.');"> 
+        <button class="btn btn-secondary my-2 fwaaccentcolor">Delete</button>
+    </form>
+</div>
+    </div>
+</div>
 
 <% include ./partials/footer %>
