@@ -73,6 +73,19 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
 router.get("/new", middleware.isLoggedIn, function(req, res) {
   res.render("new");
 });
+// All Print Route- Show all of the users Time Entries 
+router.get("/printall", middleware.isLoggedIn, function(req, res) {
+  req.user;
+  //Get all Time Entries from DB
+  TimeEntry.find({ "author.username": req.user.username, }, function(err, alltimeentries) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("print", { timeentries: alltimeentries });
+    }
+  });
+});
+
 // Date Route- Show all of the users Time Entries for the specified date
 router.get("/:date", middleware.isLoggedIn, function(req, res) {
   req.user;
@@ -86,12 +99,14 @@ router.get("/:date", middleware.isLoggedIn, function(req, res) {
     }
   });
 });
+
+
 // Date Print Route- Show all of the users Time Entries for the specified date
 router.get("/:date/print", middleware.isLoggedIn, function(req, res) {
   req.user;
   //Get all Time Entries from DB
   var timeReg = req.params.date.replace(/_/g, "-"); // puts it back in the DB Format
-  TimeEntry.find({ date: timeReg }, function(err, alltimeentries) {
+  TimeEntry.find({ "author.username": req.user.username, date: timeReg }, function(err, alltimeentries) {
     if (err) {
       console.log(err);
     } else {
@@ -99,6 +114,7 @@ router.get("/:date/print", middleware.isLoggedIn, function(req, res) {
     }
   });
 });
+
 
 // SHOW - Shows more info about one Time Entry
 router.get("/:date/:id", function(req, res) {
