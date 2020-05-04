@@ -30,6 +30,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
 
+
 //==================================================================
 // Passport Setup
 //==================================================================
@@ -42,7 +43,6 @@ app.use(
     saveUninitialized: false
   })
 );
-
 app.use(passport.initialize());
 app.use(passport.session());
 
