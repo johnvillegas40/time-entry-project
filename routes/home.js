@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var TimeEntry = require("../models/timeentry");
 var middleware = require("../middleware/index");
+var User = require("../models/user");
 //==================================================================
 // Time Entry Routes
 //==================================================================
@@ -18,7 +19,7 @@ router.get("/", middleware.isLoggedIn, function(req, res) {
       console.log(err);
     } else {
       console.log(req.user.username + " has just logged in!");
-      res.render("home", { timeentries: alltimeentries });
+      res.render("home", { timeentries: alltimeentries, username: req.user.username });
     }
   });
 });
@@ -86,19 +87,87 @@ router.get("/printall", middleware.isLoggedIn, function(req, res) {
   });
 });
 
+//Profile Page
+
+router.get("/profile/:user", middleware.isLoggedIn, (req, res) => {
+  if(req.params.user !== req.user.username) {
+    return res.redirect("/home")
+  } else {
+    User.findOne({username: req.params.user}, (err, user) => {
+      if(err) {
+        req.flash("error", "Something went wrong...")
+        res.redirect("/home")
+      } else {
+          res.render("profile", {user: user})
+        }
+      })
+  }
+})
+
+
+// Update User
+
+router.put("/profile", middleware.isLoggedIn, (req, res) =>{
+  User.findByIdAndUpdate({"_id": req.user._id}, req.body.User, (err, updatedUser) => {
+    if(!err) {
+      req.flash("regular", "Information updated successfully")
+      res.redirect("/home/profile/" + req.user.username)
+    } else {
+      req.flash("error", "There was an error, please try again")
+      res.redirect("/home/profile/" + req.user.username)
+    }
+  } )
+})
+
+router.put("/updatepassword", middleware.isLoggedIn, (req, res) => {
+  User.findOne({ _id: req.user._id },(err, user) => {
+    // Check if error connecting
+    if (err) {
+      res.json({ success: false, message: err }); // Return error
+    } else {
+      // Check if user was found in database
+      if (!user) {
+        res.json({ success: false, message: 'User not found' }); // Return error, user was not found in db
+      } else {
+        user.changePassword(req.body.oldPassword, req.body.newPassword, function(err) {
+           if(err) {
+                    if(err.name === 'IncorrectPasswordError'){
+                          req.flash("error", "Incorrect Password")
+                          res.redirect("/home/profile/" + req.user.username)
+                    }else {
+                      req.flash("error", err.name)
+                      res.redirect("/home/profile/" + req.user.username)
+                    }
+          } else {
+            req.flash("regular", "Password Updated Successfully")
+            res.redirect("/home/profile/" + req.user.username)
+           }
+         })
+      }
+    }
+  });
+})
+
+
+
 // Date Route- Show all of the users Time Entries for the specified date
 router.get("/:date", middleware.isLoggedIn, function(req, res) {
   req.user;
   //Get all Time Entries from DB
   var timeReg = req.params.date.replace(/_/g, "-"); // puts it back in the DB Format
-  TimeEntry.find({ "author.username": req.user.username, date: timeReg }, function(err, alltimeentries) {
+  TimeEntry.find({ "author.username": req.user.username, "date": timeReg }, function(err, alltimeentries) {
     if (err) {
       console.log(err);
+    } else if(alltimeentries.length < 1) {
+      res.redirect("/home")
     } else {
+      console.log(alltimeentries)
       res.render("date", { timeentries: alltimeentries });
     }
   });
 });
+
+
 
 
 // Date Print Route- Show all of the users Time Entries for the specified date
@@ -122,6 +191,8 @@ router.get("/:date/:id", function(req, res) {
   TimeEntry.findById(req.params.id).exec(function(err, foundTimeEntry) {
     if (err) {
       console.log(err);
+      res.redirect('/home/' + req.params.date)
+      
     } else {
       // render show template with that Time Entry
       res.render("show", { timeEntry: foundTimeEntry });
@@ -145,10 +216,7 @@ router.get("/:date/:id/edit", middleware.checkTimeEntryOwnership, function(
 
 // update Time Entry route
 
-router.put("/:date/:id", middleware.checkTimeEntryOwnership, function(
-  req,
-  res
-) {
+router.put("/:date/:id", middleware.checkTimeEntryOwnership, function(req, res) {
   //find and update the correct TimeEntry
   TimeEntry.findByIdAndUpdate(req.params.id, req.body.timeEntry, function(
     err,
@@ -189,4 +257,6 @@ router.delete("/", middleware.isLoggedIn, function(req, res) {
     }
   });
 });
+
+
 module.exports = router;

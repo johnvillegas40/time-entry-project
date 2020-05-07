@@ -24,25 +24,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto b4-navbar">
             <% if(!currentUser){ %>
-                <li class="nav-item"><a class="nav-link" href="/home">My Time Entries</a></li>
                 <li class="nav-item"><a class="nav-link" href="/login">Log in</a></li>
                 <li class="nav-item"><a class="nav-link" href="/register">Create Account</a></li>
         <%  } else { %>
                 <li class="nav-item"><a class="nav-link" href="/home">My Time Entries</a></li>
-                <li class="nav-item"><a class="nav-link" href="/home">Signed in as <%= currentUser.username %></a></li>
+                <li class="nav-item"><a class="nav-link" href="/home/profile/<%= currentUser.username %>">Signed in as <%= currentUser.firstName %> <%= currentUser.lastName %></a></li>
                 <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
         <%  } %>
           </ul>
         </div>
       </nav>
-    <% if(regularMessage.length > 0) { %>
-    <div id="alerting" class="alert alert-success alert-dismissible fade show" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <strong><%= regularMessage %></strong> 
-    </div>
-    <% } %>
+
     <% if(joining.length > 0) { %>
       <div id="alerting" class="alert alert-info alert-dismissible fade show" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">

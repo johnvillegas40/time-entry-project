@@ -29,6 +29,16 @@ middlewareObj.checkTimeEntryOwnership = function(req, res, next){
         res.redirect("back")
     }
 }
+middlewareObj.usernameToLowerCase = (req, res, next) => {
+    req.body.username = req.body.username.toLowerCase();
+    next();
+}
+middlewareObj.isLoggedIn = (req, res, next) => {
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 
 
 module.exports = middlewareObj;

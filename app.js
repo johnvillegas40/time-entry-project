@@ -12,10 +12,10 @@ var express = require("express"),
   dotenv = require('dotenv').config(),
   flash = require("connect-flash"),
   User = require("./models/user");
-
 //requiring routes
 var indexRoutes = require("./routes/index.js"),
   homeRoutes = require("./routes/home");
+
 
 //==================================================================
 // Mongoose/Body Parser/ View Engine
@@ -65,7 +65,9 @@ app.use(function(req, res, next) {
 //==================================================================
 app.use("/", indexRoutes);
 app.use("/home", homeRoutes);
-
+app.get('*', function(req, res){
+  res.render('404');
+});
 //==================================================================
 // APP.LISTEN Route
 //==================================================================

@@ -2,6 +2,8 @@ var express         = require("express");
 var router          = express.Router();
 var passport        = require("passport");
 var User            = require("../models/user");
+var middleware = require("../middleware/index");
+var home = require("../routes/home")
 //=================================================
 // Landing
 //=================================================
@@ -17,8 +19,8 @@ router.get("/register", function(req, res) {
 
 
 //handle sign up logic
-router.post("/register", function(req, res) {
-    var newUser = new User({username: req.body.username});
+router.post("/register", middleware.usernameToLowerCase, function(req, res) {
+    var newUser = new User({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, username: req.body.username, dob: req.body.dob,});
     User.register(newUser, req.body.password, function(err, user){
         if(err){
             if(err.name === 'UserExistsError') {
@@ -37,6 +39,7 @@ router.post("/register", function(req, res) {
     });
 });
 
+
 //show login form
 
 router.get("/login", function(req, res) {
@@ -44,7 +47,7 @@ router.get("/login", function(req, res) {
 });
 
 // handling login logic
-router.post("/login", passport.authenticate("local", {
+router.post("/login", middleware.usernameToLowerCase, passport.authenticate("local", {
     successRedirect: "/home",
     failureRedirect: "/login",
     failureFlash: ("error","Incorrect Username or Password.")
@@ -52,21 +55,17 @@ router.post("/login", passport.authenticate("local", {
 });
 
 
+
 // logout route
-router.get("/logout", isLoggedIn, function(req, res) {
+router.get("/logout", middleware.isLoggedIn, function(req, res) {
    console.log(req.user.username + " has logged out!");
    req.logout();
    req.flash("regular", "Logged you out!"); 
    res.redirect("/");
 });
 
-//middleware
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect("/login");
-}
+
+//404
 
 
 module.exports = router;

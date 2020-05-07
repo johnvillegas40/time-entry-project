@@ -1,7 +1,7 @@
 // Check Password
 
-let password = document.getElementById("inputRegPassword");
-let confirmPassword = document.getElementById("confirmRegPassword");
+let password = document.getElementById("inputPassword");
+let confirmPassword = document.getElementById("confirmPassword");
 
 let validatePassword = () => {
     if (password.value !== confirmPassword.value) {

@@ -94,7 +94,7 @@ body {
   border-top-right-radius: 0;
 }
 
-#inputRegPassword {
+#inputPassword {
   margin-bottom: 0px;
 }
 
@@ -113,9 +113,6 @@ body {
 
 
 
-.cardcss{
-  
-}
 
 
 
@@ -262,4 +259,14 @@ footer p {
 
 .jumboheight{
   margin-top: 45px;
+}
+
+
+
+/* 404 Section */
+.error-template {padding: 40px 15px;text-align: center;}
+.error-actions {margin-top:15px;margin-bottom:15px;}
+.error-actions .btn { margin-right:10px; }
+.errorpage {
+  padding-top: 20%;
 }

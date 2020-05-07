@@ -1,0 +1,13 @@
+PUT http://localhost:5213/home/profile/jvillegas
+
+###
+
+POST http://localhost:5213/login
+Content-Type: application/json
+{
+    "username": "jvillegas",
+    "password": "jvillegas"
+}
+
+###
+POST http://localhost:5213/profile/
