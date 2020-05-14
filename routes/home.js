@@ -3,7 +3,7 @@ var router = express.Router();
 var TimeEntry = require("../models/timeentry");
 var middleware = require("../middleware/index");
 var User = require("../models/user");
-//==================================================================
+//================================================================== 
 // Time Entry Routes
 //==================================================================
 
@@ -11,7 +11,7 @@ var User = require("../models/user");
 router.get("/", middleware.isLoggedIn, function(req, res) {
   req.user;
   //Get all Time Entries from DB
-  TimeEntry.find({ "author.username": req.user.username }, function(
+  TimeEntry.find({ "author.username": req.user.username, "isArchived": false }, function(
     err,
     alltimeentries
   ) {
@@ -55,10 +55,11 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
       starttime: starttime,
       endtime: endtime,
       totaltime: totaltime,
-      mco: mco
+      mco: mco,
+      isArchived: false
     };
 
-
+ 
   // Create a new Time Entry and save to DB
   TimeEntry.create(newTimeEntry, function(err, newlyCreated) {
     if (err) {
@@ -69,6 +70,18 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
     }
   });
 });
+
+router.put("/archivedate/:date", middleware.isLoggedIn, (req, res) => {
+  var timeReg = req.params.date.replace(/_/g, "-"); // puts it back in the DB Format
+  TimeEntry.updateMany({date: timeReg, isArchived: false}, {isArchived: true}, (err, updatedEntries) => {
+    if (err) {
+      req.flash("error", err.name);
+      return res.redirect("/home");
+    }
+    req.flash("regular", "Date Archived.")
+    return res.redirect("/home");
+  })
+})
 
 //NEW - show form to create new Time Entry
 router.get("/new", middleware.isLoggedIn, function(req, res) {
@@ -98,13 +111,82 @@ router.get("/profile/:user", middleware.isLoggedIn, (req, res) => {
         req.flash("error", "Something went wrong...")
         res.redirect("/home")
       } else {
-          res.render("profile", {user: user})
+        TimeEntry.find({"author.username": req.user.username, "isArchived": true}, (err, allArchivedEntries) => {
+          if(err) {
+            req.flash("error", err.name);
+            res.redirect("/home");
+          } else {
+            res.render("profile", {user: user, timeentries: allArchivedEntries});
+          }
+        })
+          
         }
       })
   }
 })
 
+// ArchivedDate Route- View the Time entries under the archived date. 
+router.get("/profile/:user/archived/:date", middleware.isLoggedIn, function(req, res) {
+  //Get all Time Entries from DB
+  var timeReg = req.params.date.replace(/_/g, "-"); // puts it back in the DB Format
+  TimeEntry.find({ "author.username": req.user.username, "date": timeReg, "isArchived": true }, function(err, alltimeentries) {
+    if (err) {
+      console.log(err);
+    } else if(alltimeentries.length < 1) {
+      res.redirect(`/profile/${req.params.user}`)
+    } else {
+      res.render("archivedate", { timeentries: alltimeentries, user: req.user.username });
+    }
+  });
+});
 
+// Unarchive Date Route - Return the Date to unarchived
+router.put("/unarchivedate/:date", middleware.isLoggedIn, (req, res) => {
+  var timeReg = req.params.date.replace(/_/g, "-"); // puts it back in the DB Format
+  TimeEntry.updateMany({date: timeReg, isArchived: true}, {isArchived: false}, (err, updatedEntries) => {
+    if (err) {
+      req.flash("error", err.name);
+      res.redirect("/home");
+    }
+    req.flash("regular", "Date Unarchived.")
+    res.redirect("/home");
+  })
+})
+
+
+
+// SHOW  Archived Entry- Shows more info about one Archived Time Entry Time Entry
+router.get("/profile/:user/archived/:date/:id", function(req, res) {
+  if (req.params.user !== req.user.username) {
+    req.flash("error", "Invalid Request");
+    req.redirect(`/profile/${req.user.username}`)
+  }
+  //find the Time Entry with provided ID
+  TimeEntry.findById(req.params.id).exec(function(err, foundTimeEntry) {
+    if (err) {
+      console.log(err);
+      res.redirect('/home/' + req.params.date)
+      
+    } else {
+      // render show template with that Time Entry
+      res.render("show", { timeEntry: foundTimeEntry, user: req.user.username });
+    }
+  });
+});
+
+//edit Archived Time Entry route
+router.get("/profile/:user/archived/:date/:id/edit", middleware.checkTimeEntryOwnership, function(
+  req,
+  res
+) {
+  TimeEntry.findById(req.params.id, function(err, foundTimeEntry) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("edit", { timeEntry: foundTimeEntry });
+    }
+  });
+});
 // Update User
 
 router.put("/profile", middleware.isLoggedIn, (req, res) =>{
@@ -155,7 +237,7 @@ router.get("/:date", middleware.isLoggedIn, function(req, res) {
   req.user;
   //Get all Time Entries from DB
   var timeReg = req.params.date.replace(/_/g, "-"); // puts it back in the DB Format
-  TimeEntry.find({ "author.username": req.user.username, "date": timeReg }, function(err, alltimeentries) {
+  TimeEntry.find({ "author.username": req.user.username, "date": timeReg, "isArchived": false }, function(err, alltimeentries) {
     if (err) {
       console.log(err);
     } else if(alltimeentries.length < 1) {

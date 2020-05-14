@@ -2,12 +2,13 @@
 <section class="jumbotron text-center jumboheight">
 
     <div class="container">
-      <% console.log(error) %>
+      
       <% if(error.length > 0) { %>
         <div id="alerting" class="alert alert-danger" role="alert">
           <strong><%= error %></strong> 
         </div>
         <% } %>
+        <% console.log(regularMessage) %>
         <% if(regularMessage.length > 0) { %>
           <div id="alerting" class="alert alert-success alert-dismissible fade show" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -80,6 +81,55 @@
         </div>
       </div>
     </div>
+</section>
+<section>
+  
+  <div class="page-header mainHeading">
+    <p>Archived Dates</p>
+  </div>
+  <div class="album py-5  bcolor" >
+    <div class="container">
+
+      <div class="row">
+        <% var timeDates = [];
+
+    for(var i = 0; i < timeentries.length; i++) { 
+        if(timeDates.includes(timeentries[i].date)){
+
+        }else {
+            timeDates[i] = timeentries[i].date;
+        }
+    } %>
+    <% timeDates.forEach(function(timeDate){ 
+        var dayHours = 0;
+        for(var i = 0; i < timeentries.length; i++){
+            if(timeDate == timeentries[i].date) {
+                dayHours += timeentries[i].totaltime
+            }
+        }
+        var dayMoney = dayHours * 34;
+        var timeLink = timeDate.replace(/-/g, '_')%>
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm fwabordercolor">
+          <div class="card-body">
+            <p class="card-text">Date: <%= timeDate %></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="/home/profile/<%= user.username %>/archived/<%= timeLink %>" class="btn btn-sm btn-outline-secondary">View</a>
+                <form action="/home/unarchivedate/<%= timeLink %>?_method=PUT" method="POST" onclick="return confirm('Are you sure you want to archive all time entries for this date?');">
+                  <button class="btn btn-sm btn-outline-secondary">Unarchive</button>
+                </form>
+                <a class="btn btn-sm btn-outline-danger" onclick="alert('Feature Coming Soon')">Delete</a>
+                <a href="/home/<%= timeLink%>/print" class="btn btn-sm btn-outline-secondary">Print</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+    </div>
+  </div>
 </section>
 
 <script type="text/javascript" src="/js/register.js"></script>

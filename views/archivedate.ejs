@@ -1,0 +1,42 @@
+<% include partials/header %>
+<main role="main">
+
+    <section class="jumbotron text-center jumbocss jumboheight">
+        <p>
+            <div class="page-header mainHeading bothbuttons3">
+                <p><a href="/home/profile/<%= user %>"><i class="fa fa-angle-left" aria-hidden="true"></i></a> Individual Archived Time Entries</p>
+    
+            </div>
+        </p>
+    </section>
+
+
+  
+    <div class="album py-5  bcolor" >
+      <div class="container">
+  
+        <div class="row">
+            <% timeentries.forEach(function(timeentry){%> 
+                <%var timeLink = timeentry.date.replace(/-/g, '_')%>
+          <div class="col-md-4">
+            <div class="card shadow-sm fwabordercolor cardcss">
+              <div class="card-body">
+                  <p class="card-text">Date: <%= timeentry.date %></p>
+                  <p class="card-text">Customer: <%= timeentry.cust %></p>
+                  <p class="card-text">Time: <%= timeentry.starttime %> to <%= timeentry.endtime %></p>
+                  <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <a href="/home/profile/<%= user %>/archived/<%=timeLink %>/<%= timeentry._id %>" class="btn btn-sm btn-outline-secondary">View</a>
+                    <a class="btn btn-sm btn-outline-danger" onclick="alert('Feature Coming Soon')">Delete</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  
+  </main>
+<% include partials/footer %>

@@ -20,7 +20,8 @@ var timeEntrySchema = new mongoose.Schema({
     starttime: String,
     endtime: String,
     totaltime: Number,
-    mco: String
+    mco: String,
+    isArchived: Boolean
 });
 
 module.exports = mongoose.model("TimeEntry", timeEntrySchema);

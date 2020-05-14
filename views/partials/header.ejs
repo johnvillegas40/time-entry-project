@@ -28,7 +28,7 @@
                 <li class="nav-item"><a class="nav-link" href="/register">Create Account</a></li>
         <%  } else { %>
                 <li class="nav-item"><a class="nav-link" href="/home">My Time Entries</a></li>
-                <li class="nav-item"><a class="nav-link" href="/home/profile/<%= currentUser.username %>">Signed in as <%= currentUser.firstName %> <%= currentUser.lastName %></a></li>
+                <li class="nav-item"><a class="nav-link" href="/home/profile/<%= currentUser.username %>">My Profile</a></li>
                 <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
         <%  } %>
           </ul>

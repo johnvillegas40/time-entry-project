@@ -1,4 +1,5 @@
 <% include ./partials/header %>
+<div class="loginform">
     <form id="loginform" action="/login" class="form-signin" method="POST">
       <% if(error.length > 0) { %>
         <div id="alerting" class="alert alert-danger" role="alert">
@@ -14,5 +15,5 @@
       <p class="mt-5 mb-3 text-muted">&copy; 2018-2020</p>
       <p>Don't have an account? <a href="/register">Click Here</a></p>
     </form>
-
+  </div>
 <% include ./partials/footer %>
