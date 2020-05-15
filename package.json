@@ -7,7 +7,7 @@
     "type": "git",
     "url": "na"
   },
-  "author": "cyph3r-m00n <cyph3r.m00n@gmail.com>",
+  "author": "John Villegas <johnvillegas40@gmail.com>",
   "dependencies": {
     "async": "~0.2.8",
     "body-parser": "^1.18.3",

@@ -91,7 +91,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res) {
 router.get("/printall", middleware.isLoggedIn, function(req, res) {
   req.user;
   //Get all Time Entries from DB
-  TimeEntry.find({ "author.username": req.user.username, }, function(err, alltimeentries) {
+  TimeEntry.find({ "author.username": req.user.username, "isArchived": false }, function(err, alltimeentries) {
     if (err) {
       console.log(err);
     } else {
