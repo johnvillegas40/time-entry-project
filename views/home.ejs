@@ -92,12 +92,12 @@
               <div class="card-body">
                 <p class="card-text">Date: <%= timeDate %></p>
                   <div class="btn-group">
-                    <a href="/home/dates/<%= timeLink %>" class="btn btn-sm btn-outline-secondary ">View</a>
+                    <a href="/home/dates/<%= timeLink %>" class="btn btn-sm btn-outline-primary btn-spacing ">View</a>
                     <form action="/home/archivedate/<%= timeLink %>?_method=PUT" method="POST" onclick="return confirm('Are you sure you want to archive all time entries for this date?');">
-                      <button class="btn btn-sm btn-outline-secondary ">Archive</button>
+                      <button class="btn btn-sm btn-outline-secondary btn-spacing ">Archive</button>
                     </form>
-                    <a class="btn btn-sm btn-outline-secondary" onclick="alert('Feature Coming Soon')">Delete</a>
-                    <a href="/home/dates/<%= timeLink%>/print" class="btn btn-sm btn-outline-secondary">Print</a>
+                    <a class="btn btn-sm btn-outline-danger btn-spacing" onclick="alert('Feature Coming Soon')">Delete</a>
+                    <a href="/home/dates/<%= timeLink%>/print" class="btn btn-sm btn-outline-info">Printing</a>
                   </div>
               </div>
             </div>

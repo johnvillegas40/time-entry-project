@@ -125,7 +125,7 @@ router.delete("/", middleware.isLoggedIn, function (req, res) {
 
 // Index Route- Show all of the users Time Entries
 router.get("/admin", middleware.isLoggedIn, middleware.isAdmin, (req, res) => {
-  User.find({_id: {$ne: req.user._id}}, (err, allUsers) => {
+  User.find({}, (err, allUsers) => {
     if (err) {
       req.flash("error", "Something went wrong...");
       res.redirect("/home");
@@ -138,6 +138,11 @@ router.get("/admin", middleware.isLoggedIn, middleware.isAdmin, (req, res) => {
     }
   })
 });
+
+router.get("/admin/users/:user/settings", middleware.isLoggedIn, (req, res) => {
+  res.render("adminsettings");
+})
+
 
 router.get("/admin/users/:user", middleware.isLoggedIn, middleware.isAdmin, (req, res) => {
 
@@ -158,7 +163,6 @@ router.get("/admin/users/:user", middleware.isLoggedIn, middleware.isAdmin, (req
 
 router.get("/admin/users/:user/:date", middleware.isLoggedIn, middleware.isAdmin, (req, res) => {
     //Get all Time Entries from DB
-      console.log("im hitting it");
     var timeReg = req.params.date.replace(/_/g, "-"); // puts it back in the DB Format
     TimeEntry.find(
       { "author.username": req.params.user, date: timeReg, isArchived: false },
@@ -166,15 +170,54 @@ router.get("/admin/users/:user/:date", middleware.isLoggedIn, middleware.isAdmin
         if (err) {
           console.log(err);
         } else if (alltimeentries.length < 1) {
-          console.log("huh?")
           res.redirect("/home");
         } else {
-          console.log(alltimeentries);
           res.render("admindate", { timeentries: alltimeentries });
         }
       }
     );
   });
+
+  router.get("/admin/users/:user/:date/print", middleware.isLoggedIn, function (req, res) {
+    //Get all Time Entries from DB
+    var timeReg = req.params.date.replace(/_/g, "-"); // puts it back in the DB Format
+    TimeEntry.find(
+      { "author.username": req.params.user, date: timeReg },
+      function (err, alltimeentries) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.render("print", { timeentries: alltimeentries });
+        }
+      }
+    );
+  });
+
+  router.put("/admin/users/:user/:date/archive", middleware.isLoggedIn, async (req, res) => {
+    var timeReg = req.params.date.replace(/_/g, "-"); // puts it back in the DB Format
+  
+  
+    TimeEntry.updateMany(
+      {"author.username": req.params.user, date: timeReg, isArchived: false },
+      { isArchived: true },
+      async (err, updatedEntries) => {
+        if (err) {
+          req.flash("error", err.name);
+          return res.redirect("/home");
+        }
+        const user = await User.findOne({'username': req.params.user})
+        console.log(updatedEntries)
+        user.activeEntryCount -= updatedEntries.n; //n is the field that mongoose uses to represent how many records were updated.
+        await user.save()
+        .then(() => {
+        req.flash("regular", "Date Archived.");
+        return res.redirect("/home/admin");
+        })
+        
+      }
+    );
+  });
+
 
 
 
@@ -328,7 +371,7 @@ router.put("/archivedate/:date", middleware.isLoggedIn, async (req, res) => {
 
 
   TimeEntry.updateMany(
-    { date: timeReg, isArchived: false },
+    {'author.username':req.user.username, date: timeReg, isArchived: false },
     { isArchived: true },
     async (err, updatedEntries) => {
       if (err) {
@@ -352,7 +395,7 @@ router.put("/archivedate/:date", middleware.isLoggedIn, async (req, res) => {
 router.put("/unarchivedate/:date", middleware.isLoggedIn, (req, res) => {
   var timeReg = req.params.date.replace(/_/g, "-"); // puts it back in the DB Format
   TimeEntry.updateMany(
-    { date: timeReg, isArchived: true },
+    {'author.username': req.user.username, date: timeReg, isArchived: true },
     { isArchived: false },
     async (err, updatedEntries) => {
       if (err) {
@@ -395,6 +438,22 @@ router.get("/dates/:date", middleware.isLoggedIn, function (req, res) {
     }
   );
 });
+// Date Print Route- Show all of the users Time Entries for the specified date
+router.get("/dates/:date/print", middleware.isLoggedIn, function (req, res) {
+  req.user;
+  //Get all Time Entries from DB
+  var timeReg = req.params.date.replace(/_/g, "-"); // puts it back in the DB Format
+  TimeEntry.find(
+    { "author.username": req.user.username, date: timeReg },
+    function (err, alltimeentries) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.render("print", { timeentries: alltimeentries });
+      }
+    }
+  );
+});
 
 // SHOW - Shows more info about one Time Entry
 router.get("/dates/:date/:id", function (req, res) {
@@ -424,22 +483,7 @@ router.get("/dates/:date/:id/edit", middleware.checkTimeEntryOwnership, function
   });
 });
 
-// Date Print Route- Show all of the users Time Entries for the specified date
-router.get("/dates/:date/print", middleware.isLoggedIn, function (req, res) {
-  req.user;
-  //Get all Time Entries from DB
-  var timeReg = req.params.date.replace(/_/g, "-"); // puts it back in the DB Format
-  TimeEntry.find(
-    { "author.username": req.user.username, date: timeReg },
-    function (err, alltimeentries) {
-      if (err) {
-        console.log(err);
-      } else {
-        res.render("print", { timeentries: alltimeentries });
-      }
-    }
-  );
-});
+
 
 // update Time Entry route
 

@@ -29,24 +29,21 @@
   
         <div class="row">
 
-        <% userInfo.forEach((user) => { %>
-
-          <div class="col-md-4">
+          <div class="col-sm-4">
             <div class="card mb-4 shadow-sm fwabordercolor">
               <div class="card-body">
-                <p class="card-text"><%= user.firstName %> <%= user.lastName %></p>
-                <p class="card-text">Open Time Entries: <%= user.entryCount %></p>
+                <p class="card-text">Test</p>
+                <p class="card-text">Test</p>
                   <div class="btn-group">
-                    <a href="/home/admin/users/<%= user.username %>" class="btn btn-sm btn-outline-primary btn-spacing ">View Active Entries</a>
-                    <a href="/home/admin/users/<%= user.username %>/settings" class="btn btn-sm btn-outline-warning ">User Settings</a>
+                    <a href="#" class="btn btn-sm btn-outline-primary btn-spacing ">View Active Entries</a>
+                    <a href="#" class="btn btn-sm btn-outline-warning ">User Settings</a>
                   </div>
               </div>
             </div>
           </div>
-          <% }) %>
         </div>
       </div>
     </div>
   
   </main>
-<% include partials/footer %>
+  <% include partials/footer %>

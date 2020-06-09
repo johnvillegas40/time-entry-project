@@ -281,3 +281,7 @@ footer p {
 .cardButtons {
   justify-content: space-around;
 }
+
+.btn-spacing {
+  margin-right: 4px
+}
