@@ -22,7 +22,7 @@ var indexRoutes = require("./routes/index.js"),
 //==================================================================
 
 mongoose.connect(
-  `${process.env.DBURI}`, { useNewUrlParser: true, useUnifiedTopology: true}
+  `${process.env.DBURI}`, { useNewUrlParser: true, useUnifiedTopology: true }
 );
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
@@ -71,7 +71,7 @@ app.get('*', function(req, res){
 //==================================================================
 // APP.LISTEN Route
 //==================================================================
+// process.env.PORT
 app.listen(process.env.PORT, process.env.IP, function() {
-
   console.log("***The Time Tracking Application has Started.***");
 });
