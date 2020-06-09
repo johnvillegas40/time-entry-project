@@ -6,7 +6,8 @@ var UserSchema = new mongoose.Schema({
     lastName: String,
     email: String,
     username: String,
-    dob: String
+    isAdmin: Boolean,
+    activeEntryCount: Number,
 });
 
 

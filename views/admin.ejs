@@ -1,0 +1,51 @@
+<% include partials/header %>
+<main role="main">
+
+ 
+    <section class="jumbotron text-center jumboheight">
+
+        <% if(error.length > 0) { %>
+          <div id="alerting" class="alert alert-danger" role="alert">
+            <strong><%= error %></strong> 
+          </div>
+          <% } %>
+          <% if(regularMessage.length > 0) { %>
+            <div id="alerting" class="alert alert-success alert-dismissible fade show" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <strong><%= regularMessage %></strong> 
+            </div>
+            <% } %>
+
+    </section>
+    <div class="page-header mainHeading">
+      <p>Admin Page - Grouped by User</p>
+      
+    </div>
+    
+    <div class="album py-5  bcolor" >
+      <div class="container">
+  
+        <div class="row">
+
+        <% userInfo.forEach((user) => { %>
+
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm fwabordercolor">
+              <div class="card-body">
+                <p class="card-text"><%= user.firstName %> <%= user.lastName %></p>
+                <p class="card-text">Open Time Entries: <%= user.entryCount %></p>
+                  <div class="btn-group">
+                    <a href="/home/admin/users/<%= user.username %>" class="btn btn-sm btn-outline-secondary ">View</a>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  
+  </main>
+<% include partials/footer %>

@@ -22,7 +22,7 @@ var indexRoutes = require("./routes/index.js"),
 //==================================================================
 
 mongoose.connect(
-  `${process.env.DBURI}`, { useNewUrlParser: true, useUnifiedTopology: true }
+  `${process.env.DBURI}`, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }
 );
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");

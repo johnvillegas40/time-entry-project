@@ -19,9 +19,9 @@
     <p>Description:  <%= timeEntry.description %></p>
     <p><em>Submitted by <%= timeEntry.author.username %></p></em>
     <div class="bothbuttons2">
-    <a href="/home/<%=timeLink%>/<%= timeEntry._id %>/edit" class="btn btn-secondary my-2 fwaaccentcolor">Edit</a>
-    <a href="/home/<%=timeLink%>" class="btn btn-secondary my-2 fwaaccentcolor">Back</a>
-    <form class="delete-form" action="/home/<%= timeLink %>/<%= timeEntry._id %>?_method=DELETE""/ method="POST" onclick="return confirm('This will delete the Time Entry.');"> 
+    <a href="/home/dates/<%=timeLink%>/<%= timeEntry._id %>/edit" class="btn btn-secondary my-2 fwaaccentcolor">Edit</a>
+    <a href="/home/dates/<%=timeLink%>" class="btn btn-secondary my-2 fwaaccentcolor">Back</a>
+    <form class="delete-form" action="/home/dates/<%= timeLink %>/<%= timeEntry._id %>?_method=DELETE""/ method="POST" onclick="return confirm('This will delete the Time Entry.');"> 
         <button class="btn btn-secondary my-2 fwaaccentcolor">Delete</button>
     </form>
 </div>

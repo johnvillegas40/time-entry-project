@@ -1,0 +1,55 @@
+<% include partials/header %>
+<main role="main">
+
+  <section class="jumbotron text-center jumboheight">
+    <% if(error.length > 0) { %>
+      <div id="alerting" class="alert alert-danger" role="alert">
+        <strong><%= error %></strong> 
+      </div>
+      <% } %>
+      <% if(regularMessage.length > 0) { %>
+        <div id="alerting" class="alert alert-success alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <strong><%= regularMessage %></strong> 
+        </div>
+        <% } %>
+  
+</section>
+<div class="page-header mainHeading bothbuttons3">
+  <p><a href="javascript:history.back()"><i class="fa fa-angle-left" aria-hidden="true"></i></a> Individual Time Entries</p>
+
+</div>
+    <p>
+
+    </p>
+
+  
+    <div class="album py-5  bcolor" >
+      <div class="container">
+  
+        <div class="row">
+            <% timeentries.forEach(function(timeentry){%> 
+                <%var timeLink = timeentry.date.replace(/-/g, '_')%>
+          <div class="col-md-4">
+            <div class="card shadow-sm fwabordercolor cardcss">
+              <div class="card-body">
+                  <p class="card-text">Date: <%= timeentry.date %></p>
+                  <p class="card-text">Account Name: <%= timeentry.cust %></p>
+                  <p class="card-text">FTCN Code: <%= timeentry.ftcn %></p>
+                  <p class="card-text">Bill Code: <%= timeentry.billcode %></p>
+                  <p class="card-text">Total Time: <%= timeentry.totaltime %></p>
+                  <p class="card-text">Description: <%= timeentry.description %></p>
+                  <div class="d-flex justify-content-between align-items-center">
+                </div>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  
+  </main>
+<% include partials/footer %>

@@ -27,7 +27,11 @@
                 <li class="nav-item"><a class="nav-link" href="/login">Log in</a></li>
                 <li class="nav-item"><a class="nav-link" href="/register">Create Account</a></li>
         <%  } else { %>
+          
                 <li class="nav-item"><a class="nav-link" href="/home">My Time Entries</a></li>
+                <% if(currentUser.isAdmin) { %>
+                  <li class="nav-item"><a class="nav-link" href="/home/admin">Admin Page</a></li>
+                  <% } %>
                 <li class="nav-item"><a class="nav-link" href="/home/profile/<%= currentUser.username %>">My Profile</a></li>
                 <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
         <%  } %>

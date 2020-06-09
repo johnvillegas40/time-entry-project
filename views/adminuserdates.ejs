@@ -3,14 +3,6 @@
 
  
     <section class="jumbotron text-center jumboheight">
-      <% if(joining.length > 0) { %>
-        <div id="alerting" class="alert alert-info alert-dismissible fade show" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <strong><%= joining %></strong> 
-        </div>
-        <% } %>
         <% if(error.length > 0) { %>
           <div id="alerting" class="alert alert-danger" role="alert">
             <strong><%= error %></strong> 
@@ -24,46 +16,10 @@
               <strong><%= regularMessage %></strong> 
             </div>
             <% } %>
-      <div class="container">
-        <div class="row">
-            <div class="col-sm" id="rcorners">
-        <h1>Time Management Application</h1>
-        <hr>
-        <p class="lead text-muted">Here you can see time entries grouped by day, and you can create a time entry, or delete all time entries.</p>
-        <p>
-          <div class="bothbuttons">
-            <a href="/home/new" class="btn btn-secondary my-2 fwaaccentcolor">Create Entry</a>
-            <form class="delete-form" action="/home?_method=DELETE" method="POST" onclick="return confirm('WARNING: This is destructive. This will delete all Time Entries, including Archived Entries.');" > 
-              <button class="btn btn-secondary my-2 fwaaccentcolor2">Delete All</button>
-            </form>
-            <a href="/home/printall" class="btn btn-secondary my-2 fwaaccentcolor">Print All</a>
-          </div>
-          
-        </p>
-    </div>
-    <div class="col-sm" id="rcorners2">
-        <h1>Personal Earnings Tracker</h1>
-        <%
-        var totalHours = 0;
-        for(var i = 0; i < timeentries.length; i++) { 
-          totalHours += timeentries[i].totaltime
-        }
-
-        var totalPay = totalHours * 34;
-        %>
-        <hr>
-        <span id="leftalign">
-        <p>Hours Worked: <%= totalHours %></p>
-        <p>Total Earned: $<%= totalPay.toFixed(2) %></p>
-    </span>
-    </div>
-
-      </div>
-
-    </div>
+      
     </section>
     <div class="page-header mainHeading">
-      <p>Dates</p>
+      <p><a href="javascript:history.back()"><i class="fa fa-angle-left" aria-hidden="true"></i></a> Dates</p>
     </div>
     <div class="album py-5  bcolor" >
       <div class="container">
@@ -92,12 +48,12 @@
               <div class="card-body">
                 <p class="card-text">Date: <%= timeDate %></p>
                   <div class="btn-group">
-                    <a href="/home/dates/<%= timeLink %>" class="btn btn-sm btn-outline-secondary ">View</a>
+                    <a href="/home/admin/users/<%= username %>/<%= timeLink %>" class="btn btn-sm btn-outline-secondary ">View</a>
                     <form action="/home/archivedate/<%= timeLink %>?_method=PUT" method="POST" onclick="return confirm('Are you sure you want to archive all time entries for this date?');">
                       <button class="btn btn-sm btn-outline-secondary ">Archive</button>
                     </form>
                     <a class="btn btn-sm btn-outline-secondary" onclick="alert('Feature Coming Soon')">Delete</a>
-                    <a href="/home/dates/<%= timeLink%>/print" class="btn btn-sm btn-outline-secondary">Print</a>
+                    <a href="/home/<%= timeLink%>/print" class="btn btn-sm btn-outline-secondary">Print</a>
                   </div>
               </div>
             </div>
