@@ -62,6 +62,7 @@
                 timeDates[i] = timeentries[i].date;
             }
         } %>
+        <% timeDates.sort() %>
         <% timeDates.forEach(function(timeDate){ 
             var dayHours = 0;
             for(var i = 0; i < timeentries.length; i++){
