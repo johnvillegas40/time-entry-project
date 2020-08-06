@@ -1,7 +1,7 @@
 <% include ./partials/header %>
 <form id="timeentryform" action="/home" class="form-signin" method="POST">
     <img id="logoimg" class="mb-4" src="https://i.ibb.co/WyNjT67/Fox-Wyndrum-Logo-Small.jpg" alt="" >
-    <div id="rcorners3">
+    <div class="fwabordercolor">
     
     <h1 class="h3 mb-3 font-weight-light">Create new entry</h1>
     <input class="form-control" type="date" name="date" required>
@@ -16,8 +16,8 @@
     <input class="form-control" type="text" name="mco" placeholder ="MCO: Client">
     <input class="form-control" type="text" name="description" placeholder ="Description">
     <div class="bothbuttons2">
-    <button class="btn btn-secondary my-2 fwaaccentcolor">Submit</button>
-    <a href="javascript:history.back()" class="btn btn-secondary my-2 fwaaccentcolor2 ">Cancel</a>
+    <button class="btn btn-sm btn-outline-info">Submit</button>
+    <a href="javascript:history.back()" class="btn btn-sm btn-outline-danger ">Cancel</a>
 </div>
     </div>
   </form>

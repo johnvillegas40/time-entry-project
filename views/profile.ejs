@@ -18,7 +18,7 @@
           </div>
           <% } %>
       <div class="row">
-          <div class="col-sm" id="rcorners">
+          <div class="col-sm fwabordercolor">
             <h1>Profile Page</h1>
             <hr>
             <p class="lead text-muted">User information</p>
@@ -26,7 +26,6 @@
               <div class="col-md-4">
                 <p>First Name:  </p>
                 <p>Last Name: </p>
-                <p>Date of Birth: </p>
                 <p>E-mail: </p>
                 <p>Username: </p>
               </div>
@@ -34,13 +33,12 @@
               <form action="/home/profile?_method=PUT" method="POST">
                 <input class="form-control" type="text" name="User[firstName]" value="<%= user.firstName %>" required>
                 <input class="form-control" type="text" name="User[lastName]" value="<%= user.lastName %>" required>
-                <input class="form-control" type="date" name="User[dob]" value="<%= user.dob %>" required>
                 <input class="form-control" type="email" name="User[email]" value="<%= user.email %>" required>
                 <input class="form-control" type="text" name="User[username]" value="<%= user.username %>" disabled>
                 <p>
                   <div class="bothbuttons">
-                    <button class="btn btn-secondary my-2 fwaaccentcolor">Update</button>
-                    <a href="/home" class="btn btn-secondary my-2 fwaaccentcolor">Go Back</a>
+                    <button class="btn btn-sm btn-outline-info">Update</button>
+                    <a href="/home" class="btn btn-sm btn-outline-danger">Go Back</a>
                   </div>
                 </p>
               </form>
@@ -55,7 +53,7 @@
 
   <div class="container">
     <div class="row">
-        <div class="col-sm" id="rcorners">
+        <div class="col-sm fwabordercolor">
           <h1>Password Update</h1>
           <hr>
           <p class="lead text-muted">User information</p>
@@ -72,7 +70,7 @@
                 <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="New Password" required>
                 <p>
                   <div class="bothbuttons">
-                    <button class="btn btn-secondary my-2 fwaaccentcolor">Update</button>
+                    <button class="btn btn-sm btn-outline-info">Update</button>
                   </div>
                 </p>
               </form>

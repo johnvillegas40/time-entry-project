@@ -26,17 +26,17 @@
             <% } %>
       <div class="container">
         <div class="row">
-            <div class="col-sm" id="rcorners">
+            <div class="col-sm fwabordercolor" >
         <h1>Time Management Application</h1>
         <hr>
-        <p class="lead text-muted">Here you can see time entries grouped by day, and you can create a time entry, or delete all time entries.</p>
+        <p class="lead text-muted">Here you can see time entries grouped by day, and you can create a time entry, print all, or delete all time entries.</p>
         <p>
           <div class="bothbuttons">
-            <a href="/home/new" class="btn btn-secondary my-2 fwaaccentcolor">Create Entry</a>
+            <a href="/home/new" class="btn btn-sm btn-outline-primary btn-spacing">Create Entry</a>
             <form class="delete-form" action="/home?_method=DELETE" method="POST" onclick="return confirm('WARNING: This is destructive. This will delete all Time Entries, including Archived Entries.');" > 
-              <button class="btn btn-secondary my-2 fwaaccentcolor2">Delete All</button>
+              <button class="btn btn-sm btn-outline-danger btn-spacing">Delete All</button>
             </form>
-            <a href="/home/printall" class="btn btn-secondary my-2 fwaaccentcolor">Print All</a>
+            <a href="/home/printall" class="btn btn-sm btn-outline-info">Print All</a>
           </div>
           
         </p>
@@ -80,8 +80,10 @@
                     <form action="/home/archivedate/<%= timeLink %>?_method=PUT" method="POST" onclick="return confirm('Are you sure you want to archive all time entries for this date?');">
                       <button class="btn btn-sm btn-outline-secondary btn-spacing ">Archive</button>
                     </form>
-                    <a class="btn btn-sm btn-outline-danger btn-spacing" onclick="alert('Feature Coming Soon')">Delete</a>
-                    <a href="/home/dates/<%= timeLink%>/print" class="btn btn-sm btn-outline-info">Printing</a>
+                    <form action="/home/<%= timeLink %>?_method=DELETE" method="POST" onclick="return confirm('Are you sure you want to delete all time entries for this date?');">
+                      <button class="btn btn-sm btn-outline-danger btn-spacing">Delete</button>
+                    </form>
+                    <a href="/home/dates/<%= timeLink%>/print" class="btn btn-sm btn-outline-info">Print</a>
                   </div>
               </div>
             </div>

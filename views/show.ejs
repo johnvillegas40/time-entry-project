@@ -2,7 +2,7 @@
 <%var timeLink = timeEntry.date.replace(/-/g, '_')%>
 <div id="timeentryform"  class="form-signin">
     <img id="logoimg" class="mb-4" src="https://i.ibb.co/WyNjT67/Fox-Wyndrum-Logo-Small.jpg" alt="" >
-    <div id="rcorners3">
+    <div class="fwabordercolor">
     
     <h1 class="h3 mb-3 font-weight-light">Time Entry Details</h1>
     <hr>
@@ -19,11 +19,8 @@
     <p>Description:  <%= timeEntry.description %></p>
     <p><em>Submitted by <%= timeEntry.author.username %></p></em>
     <div class="bothbuttons2">
-    <a href="/home/dates/<%=timeLink%>/<%= timeEntry._id %>/edit" class="btn btn-secondary my-2 fwaaccentcolor">Edit</a>
-    <a href="/home/dates/<%=timeLink%>" class="btn btn-secondary my-2 fwaaccentcolor">Back</a>
-    <form class="delete-form" action="/home/dates/<%= timeLink %>/<%= timeEntry._id %>?_method=DELETE""/ method="POST" onclick="return confirm('This will delete the Time Entry.');"> 
-        <button class="btn btn-secondary my-2 fwaaccentcolor">Delete</button>
-    </form>
+    <a href="/home/dates/<%=timeLink%>/<%= timeEntry._id %>/edit" class="btn btn-sm btn-outline-primary btn-spacing">Edit</a>
+    <a href="/home/dates/<%=timeLink%>" class="btn btn-sm btn-outline-info">Back</a>
 </div>
     </div>
 </div>

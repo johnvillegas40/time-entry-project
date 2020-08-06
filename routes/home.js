@@ -3,6 +3,7 @@ var router = express.Router();
 var TimeEntry = require("../models/timeentry");
 var middleware = require("../middleware/index");
 var User = require("../models/user");
+const user = require("../models/user");
 
 //==================================================================
 // Time Entry
@@ -140,8 +141,58 @@ router.get("/admin", middleware.isLoggedIn, middleware.isAdmin, (req, res) => {
 });
 
 router.get("/admin/users/:user/settings", middleware.isLoggedIn, (req, res) => {
-  res.render("adminsettings");
+  User.find({username: req.params.user}, (err, user) => {
+    if (err) {
+      req.flash("error", "Something went wrong...");
+      res.redirect("/admin");
+    } else {
+      res.render("adminsettings", {userInfo: user[0]});
+    }
+  })
 })
+
+router.put("/admin/users/:user/updatepassword", middleware.isLoggedIn, (req, res) => {
+  User.findOne({ username: req.params.user }, (err, user) => {
+    // Check if error connecting'
+    if (err) {
+      res.json({ success: false, message: err }); // Return error
+    } else {
+      // Check if user was found in database
+      if (!user) {
+        res.json({ success: false, message: "User not found" }); // Return error, user was not found in db
+      } else {
+        user.setPassword(req.body.newPassword, function (err) {
+            if (err) {
+              req.flash("error", "Something Went Wrong...");
+              res.redirect("/home/admin");
+            } else {
+              req.flash("regular", "Password Updated Successfully for " + user.firstName + " " + user.lastName);
+              res.redirect("/home/admin");
+            }
+          }
+        );
+      }
+    }
+  });
+});
+
+router.put("/admin/users/:user/updateprofile", middleware.isLoggedIn, (req, res) => {
+  console.log(req.body.User.isAdmin)
+  User.findOneAndUpdate(
+    { username: req.params.user },
+    req.body.User,
+    (err, updatedUser) => {
+      if (!err) {
+        req.flash("regular", "Information updated successfully");
+        res.redirect("/home/admin");
+      } else {
+        console.log(err)
+        req.flash("error", "There was an error, please try again");
+        res.redirect("/home/admin");
+      }
+    }
+  );
+});
 
 
 router.get("/admin/users/:user", middleware.isLoggedIn, middleware.isAdmin, (req, res) => {
@@ -438,6 +489,24 @@ router.get("/dates/:date", middleware.isLoggedIn, function (req, res) {
     }
   );
 });
+// Delete Date
+router.delete("/:date", middleware.isLoggedIn, function (req, res) {
+  var timeReg = req.params.date.replace(/_/g, "-"); // puts it back in the DB Format
+  TimeEntry.remove({ "author.username": req.user.username, date: timeReg }, async function (err, count) {
+    if (err) {
+      res.redirect("/home");
+    } else {
+
+      const user = await User.findOne({'username': req.user.username})
+      user.activeEntryCount -= count.deletedCount;
+      await user.save()
+      .then(() => {
+        res.redirect("/home");
+      })
+    }
+  });
+});
+
 // Date Print Route- Show all of the users Time Entries for the specified date
 router.get("/dates/:date/print", middleware.isLoggedIn, function (req, res) {
   req.user;

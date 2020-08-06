@@ -1,46 +1,100 @@
 <% include partials/header %>
-<main role="main">
 
- 
-    <section class="jumbotron text-center jumboheight">
+  <section class="jumbotron text-center jumboheight">
 
-        <% if(error.length > 0) { %>
-          <div id="alerting" class="alert alert-danger" role="alert">
-            <strong><%= error %></strong> 
+    <div class="container">
+      
+      <% if(error.length > 0) { %>
+        <div id="alerting" class="alert alert-danger" role="alert">
+          <strong><%= error %></strong> 
+        </div>
+        <% } %>
+        <% console.log(regularMessage) %>
+        <% if(regularMessage.length > 0) { %>
+          <div id="alerting" class="alert alert-success alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <strong><%= regularMessage %></strong> 
           </div>
           <% } %>
-          <% if(regularMessage.length > 0) { %>
-            <div id="alerting" class="alert alert-success alert-dismissible fade show" role="alert">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-              <strong><%= regularMessage %></strong> 
-            </div>
-            <% } %>
-
-    </section>
-    <div class="page-header mainHeading">
-      <p>Admin Page - User Control</p>
-      
-    </div>
-    
-    <div class="album py-5  bcolor" >
-      <div class="container">
-  
-        <div class="col-md-4">
-          <form action="/home/updatepassword?_method=PUT" method="POST">
-            <input type="password"  name="oldPassword" class="form-control" placeholder="Old Password" required>
-            <input type="password" id="inputPassword" name="newPassword" class="form-control" placeholder="New Password" required>
-            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="New Password" required>
-            <p>
-              <div class="bothbuttons">
-                <button class="btn btn-secondary my-2 fwaaccentcolor">Update</button>
+      <div class="row">
+          <div class="col-sm fwabordercolor" >
+            <h1>Update User Info</h1>
+            <hr>
+            <p class="lead text-muted">User information</p>
+            <div class="row">
+              <div class="col-md-4">
+                <p>First Name:  </p>
+                <p>Last Name: </p>
+                <p>E-mail: </p>
+                <p>Username: </p>
+                <p>Is Admin: </p>
               </div>
-            </p>
-          </form>
+            <div class="col-md-4">
+              <form action="/home/admin/users/<%= userInfo.username %>/updateprofile?_method=PUT" method="POST">
+                <input class="form-control" type="text" name="User[firstName]" value="<%= userInfo.firstName %>" required>
+                <input class="form-control" type="text" name="User[lastName]" value="<%= userInfo.lastName %>" required>
+                <input class="form-control" type="email" name="User[email]" value="<%= userInfo.email %>" required>
+                <input class="form-control" type="text" name="User[username]" value="<%= userInfo.username %>" disabled>
+                <select class="form-control" name="User[isAdmin]">
+                  <% if (userInfo.isAdmin) { %>
+                    <option selected value=true>Yes</option>
+                    <option value=false>No</option>
+                    <% } else { %>
+                      <option value=true>Yes</option>
+                      <option selected value=false>No</option>
+                      <% } %>
+                </select>
+                <p>
+                  <div class="bothbuttons">
+                    <button class="btn btn-sm btn-outline-info">Update</button>
+                    <a href="/home/admin" class="btn btn-sm btn-outline-danger">Go Back</a>
+                  </div>
+                </p>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+
+
+
+  <div class="container">
+    <div class="row">
+        <div class="col-sm fwabordercolor">
+          <h1>Password Update</h1>
+          <hr>
+          <p class="lead text-muted">User information</p>
+          <div class="row">
+            <div class="col-md-4">
+              <p>New Password:  </p>
+              <p>Confirm Password: </p>
+            </div>
+            <div class="col-md-4">
+              <form action="/home/admin/users/<%= userInfo.username %>/updatepassword?_method=PUT" method="POST">
+                <input type="password" id="inputPassword" name="newPassword" class="form-control" placeholder="New Password" required>
+                <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Confirm New Password" required>
+                <p>
+                  <div class="bothbuttons">
+                    <button class="btn btn-sm btn-outline-info">Update</button>
+                  </div>
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+
+
+
   
   </main>
+  <script type="text/javascript" src="/js/register.js"></script>
   <% include partials/footer %>
