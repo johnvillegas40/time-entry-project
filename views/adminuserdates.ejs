@@ -26,7 +26,7 @@
   
         <div class="row">
             <% var timeDates = [];
-            timeDates.sort()
+            
 
         for(var i = 0; i < timeentries.length; i++) { 
             if(timeDates.includes(timeentries[i].date)){
@@ -35,6 +35,7 @@
                 timeDates[i] = timeentries[i].date;
             }
         } %>
+        <% timeDates.sort() %>
         <% timeDates.forEach(function(timeDate){ 
             var dayHours = 0;
             for(var i = 0; i < timeentries.length; i++){
