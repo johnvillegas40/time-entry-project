@@ -35,6 +35,7 @@
       <div class="container">
   
         <div class="row">
+          <% timeentries.sort() %>
             <% timeentries.forEach(function(timeentry){%> 
                 <%var timeLink = timeentry.date.replace(/-/g, '_')%>
           <div class="col-md-4">
