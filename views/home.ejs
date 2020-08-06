@@ -41,22 +41,6 @@
           
         </p>
     </div>
-    <div class="col-sm" id="rcorners2">
-        <h1>Personal Earnings Tracker</h1>
-        <%
-        var totalHours = 0;
-        for(var i = 0; i < timeentries.length; i++) { 
-          totalHours += timeentries[i].totaltime
-        }
-
-        var totalPay = totalHours * 34;
-        %>
-        <hr>
-        <span id="leftalign">
-        <p>Hours Worked: <%= totalHours %></p>
-        <p>Total Earned: $<%= totalPay.toFixed(2) %></p>
-    </span>
-    </div>
 
       </div>
 
