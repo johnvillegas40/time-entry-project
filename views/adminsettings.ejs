@@ -27,20 +27,17 @@
     <div class="album py-5  bcolor" >
       <div class="container">
   
-        <div class="row">
-
-          <div class="col-sm-4">
-            <div class="card mb-4 shadow-sm fwabordercolor">
-              <div class="card-body">
-                <p class="card-text">Test</p>
-                <p class="card-text">Test</p>
-                  <div class="btn-group">
-                    <a href="#" class="btn btn-sm btn-outline-primary btn-spacing ">View Active Entries</a>
-                    <a href="#" class="btn btn-sm btn-outline-warning ">User Settings</a>
-                  </div>
+        <div class="col-md-4">
+          <form action="/home/updatepassword?_method=PUT" method="POST">
+            <input type="password"  name="oldPassword" class="form-control" placeholder="Old Password" required>
+            <input type="password" id="inputPassword" name="newPassword" class="form-control" placeholder="New Password" required>
+            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="New Password" required>
+            <p>
+              <div class="bothbuttons">
+                <button class="btn btn-secondary my-2 fwaaccentcolor">Update</button>
               </div>
-            </div>
-          </div>
+            </p>
+          </form>
         </div>
       </div>
     </div>
