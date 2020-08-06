@@ -1,59 +1,7 @@
 <% include ./partials/header %>
-<!-- <%var timeLink = timeEntry.date.replace(/-/g, '_')%>
-<div class="container">
-    
-    <div class="row">
-        <h1 style="text-align: center;">Edit <%= timeEntry.date %></h1>
-        <div style="width: 30%; margin: 25px auto;">
-           <form action="/home/<%= timeLink%>/<%= timeEntry._id%>?_method=PUT" method="POST">
-               <div class="form-group">
-                   <input class="form-control" type="date" name="timeEntry[date]" value="<%= timeEntry.date %>" placeholder ="DATE :MM/DD/YYYY" required>
-               </div>
-               <div class="form-group">
-                   <input class="form-control" type="text" name="timeEntry[cust]" value="<%= timeEntry.cust %>" placeholder ="Customer: FOX001">
-               </div>
-               <div class="form-group">
-                   <input class="form-control" type="text" name="timeEntry[ftcn]" value="<%= timeEntry.ftcn %>" placeholder ="FTCN: SUP">
-               </div>
-               <div class="form-group">
-                   <input class="form-control" type="text" name="timeEntry[billcode]" value="<%= timeEntry.billcode %>" placeholder ="BILL CODE: BIT">
-               </div>
-               <div class="form-group">
-                   <input class="form-control" type="text" name="timeEntry[job]" value="<%= timeEntry.job %>" placeholder ="Job Number">
-               </div>
-               <div class="form-group">
-                   <input class="form-control" type="text" name="timeEntry[agr]" value="<%= timeEntry.agr %>"  placeholder = "AGR">
-               </div>
-               <div class="form-group">
-                   <input class="form-control" type="time" name="timeEntry[starttime]" value="<%= timeEntry.starttime %>" placeholder ="TIME TO/FROM: 2:00 PM to 3:00 PM">
-               </div>
-               <div class="form-group">
-                <input class="form-control" type="time" name="timeEntry[endtime]" value="<%= timeEntry.endtime %>" placeholder ="TIME TO/FROM: 2:00 PM to 3:00 PM">
-                </div>
-               <div class="form-group">
-                   <input class="form-control" type="number" name="timeEntry[totaltime]" value="<%= timeEntry.totaltime %>" placeholder ="TOTAL TIME: 1 " step="0.01" required>
-               </div>
-               <div class="form-group">
-                   <input class="form-control" type="text" name="timeEntry[mco]" value="<%= timeEntry.mco %>" placeholder ="MCO: Client">
-               </div>
-               <div class="form-group">
-                   <input class="form-control" type="text" name="timeEntry[description]" value="<%= timeEntry.description %>" placeholder ="The Cat Jumped over the Hat">
-               </div>
-               <div class="form-group">
-                   <button class="btn btn-lg btn-primary btn-block">Submit!</button>
-               </div>
-                
-            </form>
-
-            <a href="/home/<%= timeLink%>/<%= timeEntry._id %>">Go Back</a>
-        </div>
-        
-    </div>
-    
-</div> -->
 <%var timeLink = timeEntry.date.replace(/-/g, '_')%>
 
-<form id="timeentryform" action="/home/<%= timeLink%>/<%= timeEntry._id%>?_method=PUT" class="form-signin" method="POST">
+<form id="timeentryform" action="/home/dates/<%= timeLink%>/<%= timeEntry._id%>?_method=PUT" class="form-signin" method="POST">
 
     <img id="logoimg" class="mb-4" src="https://i.ibb.co/WyNjT67/Fox-Wyndrum-Logo-Small.jpg" alt="" >
     <div id="rcorners3">

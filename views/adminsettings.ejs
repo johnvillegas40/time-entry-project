@@ -1,0 +1,49 @@
+<% include partials/header %>
+<main role="main">
+
+ 
+    <section class="jumbotron text-center jumboheight">
+
+        <% if(error.length > 0) { %>
+          <div id="alerting" class="alert alert-danger" role="alert">
+            <strong><%= error %></strong> 
+          </div>
+          <% } %>
+          <% if(regularMessage.length > 0) { %>
+            <div id="alerting" class="alert alert-success alert-dismissible fade show" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <strong><%= regularMessage %></strong> 
+            </div>
+            <% } %>
+
+    </section>
+    <div class="page-header mainHeading">
+      <p>Admin Page - User Control</p>
+      
+    </div>
+    
+    <div class="album py-5  bcolor" >
+      <div class="container">
+  
+        <div class="row">
+
+          <div class="col-sm-4">
+            <div class="card mb-4 shadow-sm fwabordercolor">
+              <div class="card-body">
+                <p class="card-text">Test</p>
+                <p class="card-text">Test</p>
+                  <div class="btn-group">
+                    <a href="#" class="btn btn-sm btn-outline-primary btn-spacing ">View Active Entries</a>
+                    <a href="#" class="btn btn-sm btn-outline-warning ">User Settings</a>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </main>
+  <% include partials/footer %>

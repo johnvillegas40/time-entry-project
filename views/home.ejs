@@ -16,7 +16,6 @@
             <strong><%= error %></strong> 
           </div>
           <% } %>
-          <% console.log(regularMessage) %>
           <% if(regularMessage.length > 0) { %>
             <div id="alerting" class="alert alert-success alert-dismissible fade show" role="alert">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -34,7 +33,7 @@
         <p>
           <div class="bothbuttons">
             <a href="/home/new" class="btn btn-secondary my-2 fwaaccentcolor">Create Entry</a>
-            <form class="delete-form" action="/home?_method=DELETE" method="POST" onclick="return confirm('This will delete all Time Entries.');" > 
+            <form class="delete-form" action="/home?_method=DELETE" method="POST" onclick="return confirm('WARNING: This is destructive. This will delete all Time Entries, including Archived Entries.');" > 
               <button class="btn btn-secondary my-2 fwaaccentcolor2">Delete All</button>
             </form>
             <a href="/home/printall" class="btn btn-secondary my-2 fwaaccentcolor">Print All</a>
@@ -93,12 +92,12 @@
               <div class="card-body">
                 <p class="card-text">Date: <%= timeDate %></p>
                   <div class="btn-group">
-                    <a href="/home/<%= timeLink %>" class="btn btn-sm btn-outline-secondary ">View</a>
+                    <a href="/home/dates/<%= timeLink %>" class="btn btn-sm btn-outline-primary btn-spacing ">View</a>
                     <form action="/home/archivedate/<%= timeLink %>?_method=PUT" method="POST" onclick="return confirm('Are you sure you want to archive all time entries for this date?');">
-                      <button class="btn btn-sm btn-outline-secondary ">Archive</button>
+                      <button class="btn btn-sm btn-outline-secondary btn-spacing ">Archive</button>
                     </form>
-                    <a class="btn btn-sm btn-outline-secondary" onclick="alert('Feature Coming Soon')">Delete</a>
-                    <a href="/home/<%= timeLink%>/print" class="btn btn-sm btn-outline-secondary">Print</a>
+                    <a class="btn btn-sm btn-outline-danger btn-spacing" onclick="alert('Feature Coming Soon')">Delete</a>
+                    <a href="/home/dates/<%= timeLink%>/print" class="btn btn-sm btn-outline-info">Printing</a>
                   </div>
               </div>
             </div>

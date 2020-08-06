@@ -16,13 +16,13 @@ var express = require("express"),
 var indexRoutes = require("./routes/index.js"),
   homeRoutes = require("./routes/home");
 
-
+;
 //==================================================================
 // Mongoose/Body Parser/ View Engine
 //==================================================================
 
 mongoose.connect(
-  `${process.env.DBURI}`, { useNewUrlParser: true, useUnifiedTopology: true }
+  `${process.env.DBURI}`, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }
 );
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");

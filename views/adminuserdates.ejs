@@ -1,0 +1,66 @@
+<% include partials/header %>
+<main role="main">
+
+ 
+    <section class="jumbotron text-center jumboheight">
+        <% if(error.length > 0) { %>
+          <div id="alerting" class="alert alert-danger" role="alert">
+            <strong><%= error %></strong> 
+          </div>
+          <% } %>
+          <% if(regularMessage.length > 0) { %>
+            <div id="alerting" class="alert alert-success alert-dismissible fade show" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <strong><%= regularMessage %></strong> 
+            </div>
+            <% } %>
+      
+    </section>
+    <div class="page-header mainHeading">
+      <p><a href="javascript:history.back()"><i class="fa fa-angle-left" aria-hidden="true"></i></a> Dates</p>
+    </div>
+    <div class="album py-5  bcolor" >
+      <div class="container">
+  
+        <div class="row">
+            <% var timeDates = [];
+
+        for(var i = 0; i < timeentries.length; i++) { 
+            if(timeDates.includes(timeentries[i].date)){
+
+            }else {
+                timeDates[i] = timeentries[i].date;
+            }
+        } %>
+        <% timeDates.forEach(function(timeDate){ 
+            var dayHours = 0;
+            for(var i = 0; i < timeentries.length; i++){
+                if(timeDate == timeentries[i].date) {
+                    dayHours += timeentries[i].totaltime
+                }
+            }
+            var dayMoney = dayHours * 34;
+            var timeLink = timeDate.replace(/-/g, '_')%>
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm fwabordercolor">
+              <div class="card-body">
+                <p class="card-text">Date: <%= timeDate %></p>
+                  <div class="btn-group">
+                    <a href="/home/admin/users/<%= username %>/<%= timeLink %>" class="btn btn-sm btn-outline-primary  btn-spacing">View</a>
+                    <form action="<%= username %>/<%= timeLink %>/archive?_method=PUT" method="POST" onclick="return confirm('Are you sure you want to archive all time entries for this date?');">
+                      <button class="btn btn-sm btn-outline-secondary btn-spacing">Archive</button>
+                    </form>
+                    <a href="/home/admin/users/<%= username %>/<%= timeLink %>/print" class="btn btn-sm btn-outline-warning">Print</a>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  
+  </main>
+<% include partials/footer %>
