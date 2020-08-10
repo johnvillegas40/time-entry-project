@@ -194,6 +194,25 @@ router.put("/admin/users/:user/updateprofile", middleware.isLoggedIn, (req, res)
   );
 });
 
+router.delete("/admin/users/:user/deleteprofile", middleware.isAdmin, (req, res) => {
+  TimeEntry.remove({"author.username": req.params.user},(err) => {
+    if (err) {
+      req.flash("error", "There was an error, please try again");
+      res.redirect("/home/admin");
+    } else {
+      User.deleteOne({username: req.params.user}, (err) => {
+        if (err) {
+          req.flash("error", "Something went wrong. Please try again");
+          res.redirect("/home/admin");
+        } else {
+          req.flash("regular", "Profile removed successfully")
+          res.redirect("/home/admin")
+        }
+      })
+    }
+  })
+})
+
 
 router.get("/admin/users/:user", middleware.isLoggedIn, middleware.isAdmin, (req, res) => {
 
@@ -268,6 +287,8 @@ router.get("/admin/users/:user/:date", middleware.isLoggedIn, middleware.isAdmin
       }
     );
   });
+
+
 
 
 
@@ -367,12 +388,7 @@ router.delete("/profile/:user/archived/:date/:id", middleware.checkTimeEntryOwne
     if (err) {
       res.redirect("/home");
     } else {
-      const user = await User.findOne({'username': req.user.username})
-      user.activeEntryCount -= 1;
-      await user.save()
-      .then(() => {
         res.redirect("/home/profile/" + req.user.username);
-      })
     }
   });
 })

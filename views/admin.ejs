@@ -37,8 +37,13 @@
                 <p class="card-text"><%= user.firstName %> <%= user.lastName %></p>
                 <p class="card-text">Open Time Entries: <%= user.entryCount %></p>
                   <div class="btn-group">
-                    <a href="/home/admin/users/<%= user.username %>" class="btn btn-sm btn-outline-primary btn-spacing ">View Active Entries</a>
-                    <a href="/home/admin/users/<%= user.username %>/settings" class="btn btn-sm btn-outline-warning ">User Settings</a>
+                    <a href="/home/admin/users/<%= user.username %>" class="btn btn-sm btn-outline-primary btn-spacing ">Active Entries</a>
+                    <a href="/home/admin/users/<%= user.username %>/settings" class="btn btn-sm btn-outline-warning btn-spacing">User Settings</a>
+
+                    <form class="delete-form" action="/home/admin/users/<%= user.username %>/deleteprofile?_method=DELETE" method="POST" onclick="return confirm('This will delete the user profile and all time entries' );" > 
+                      <button class="btn btn-sm btn-outline-danger ">Delete</button>
+                    </form>
+                    <!-- <a href="/home/admin/users/<%= user.username %>/deleteprofile" class="btn btn-sm btn-outline-warning ">User Settings</a> -->
                   </div>
               </div>
             </div>
