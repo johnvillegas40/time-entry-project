@@ -26,13 +26,16 @@
                   <p class="card-text">Time: <%= timeentry.starttime %> to <%= timeentry.endtime %></p>
                   <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <a href="/home/profile/<%= user %>/archived/<%=timeLink %>/<%= timeentry._id %>" class="btn btn-sm btn-outline-secondary">View</a>
-                    <a class="btn btn-sm btn-outline-danger" onclick="alert('Feature Coming Soon')">Delete</a>
+                    <a href="/home/profile/<%= user %>/archived/<%=timeLink %>/<%= timeentry._id %>" class="btn btn-sm btn-outline-primary btn-spacing">View</a>
+                    <form class="delete-form" action="/home/dates/<%= timeLink %>/<%= timeentry._id %>?_method=DELETE""/ method="POST" onclick="return confirm('This will delete the Time Entry.');"> 
+                      <button class="btn btn-sm btn-outline-danger">Delete</button>
+                  </form>
+                    <!-- <a class="btn btn-sm btn-outline-danger" onclick="alert('Feature Coming Soon')">Delete</a> -->
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </div> 
           <% }) %>
         </div>
       </div>

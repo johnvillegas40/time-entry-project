@@ -106,7 +106,7 @@ router.post("/", middleware.isLoggedIn, function (req, res) {
 
 // delete all time entries
 router.delete("/", middleware.isLoggedIn, function (req, res) {
-  TimeEntry.remove({ "author.username": req.user.username }, async function (err) {
+  TimeEntry.remove({ "author.username": req.user.username, isArchived: false }, async function (err) {
     if (err) {
       res.redirect("/home");
     } else {
@@ -351,6 +351,21 @@ router.get("/profile/:user/archived/:date/:id", function (req, res) {
   });
 });
 
+router.delete("/profile/:user/archived/:date/:id", middleware.checkTimeEntryOwnership, (req, res) => {
+  TimeEntry.findByIdAndRemove(req.params.id, async function (err) {
+    if (err) {
+      res.redirect("/home");
+    } else {
+      const user = await User.findOne({'username': req.user.username})
+      user.activeEntryCount -= 1;
+      await user.save()
+      .then(() => {
+        res.redirect("/home/profile/");
+      })
+    }
+  });
+})
+
 //edit Archived Time Entry route
 router.get(
   "/profile/:user/archived/:date/:id/edit",
@@ -459,7 +474,7 @@ router.put("/unarchivedate/:date", middleware.isLoggedIn, (req, res) => {
       await user.save()
       .then(() => {
         req.flash("regular", "Date Unarchived.");
-        res.redirect("/home");
+        res.redirect("/home/profile/");
       })
 
     }
