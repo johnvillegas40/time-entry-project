@@ -281,7 +281,7 @@ router.get("/admin/users/:user/:date", middleware.isLoggedIn, middleware.isAdmin
         await user.save()
         .then(() => {
         req.flash("regular", "Date Archived.");
-        return res.redirect("/home/admin");
+        return res.redirect('back');
         })
         
       }
