@@ -231,7 +231,7 @@ router.get("/admin/users/:user", middleware.isLoggedIn, middleware.isAdmin, (req
   );
 })
 
-router.get('/admin/users/:user/printall', middlware.isLoggedIn, middleware.isAdmin, (req, res) => {
+router.get("/admin/users/:user/printall", middlware.isLoggedIn, middleware.isAdmin, (req, res) => {
   TimeEntry.find(
     { "author.username": req.params.user, isArchived: false },
     function (err, alltimeentries) {
