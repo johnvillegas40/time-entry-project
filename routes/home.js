@@ -265,6 +265,19 @@ router.get("/admin/users/:user/:date", middleware.isLoggedIn, middleware.isAdmin
     );
   });
 
+  router.get("/admin/users/:user/printall", middleware.isLoggedIn, middleware.isAdmin, (req, res) => {
+    TimeEntry.find(
+      { "author.username": req.params.user, isArchived: false },
+      function (err, alltimeentries) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.render("print", { timeentries: alltimeentries });
+        }
+      }
+    );
+  });
+
   router.put("/admin/users/:user/:date/archive", middleware.isLoggedIn, async (req, res) => {
     var timeReg = req.params.date.replace(/_/g, "-"); // puts it back in the DB Format
   
