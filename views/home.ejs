@@ -32,6 +32,10 @@
         <p class="lead text-muted">Here you can see time entries grouped by day, and you can create a time entry, print all, or delete all time entries.</p>
         <p>
           <div class="bothbuttons">
+            <a href="/home/new" class="btn btn-sm btn-outline-primary btn-spacing">Create Entry</a>
+            <form class="delete-form" action="/home?_method=DELETE" method="POST" onclick="return confirm('This will delete all active time entries.');" > 
+              <button class="btn btn-sm btn-outline-danger btn-spacing">Delete All</button>
+            </form>
             <a href="/home/printall" class="btn btn-sm btn-outline-info">Print All</a>
           </div>
           
