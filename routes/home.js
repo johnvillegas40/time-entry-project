@@ -231,6 +231,19 @@ router.get("/admin/users/:user", middleware.isLoggedIn, middleware.isAdmin, (req
   );
 })
 
+router.get('/admin/users/:user/printall', middlware.isLoggedIn, middleware.isAdmin, (req, res) => {
+  TimeEntry.find(
+    { "author.username": req.params.user, isArchived: false },
+    function (err, alltimeentries) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.render("print", { timeentries: alltimeentries });
+      }
+    }
+  );
+})
+
 router.get("/admin/users/:user/:date", middleware.isLoggedIn, middleware.isAdmin, (req, res) => {
     //Get all Time Entries from DB
     var timeReg = req.params.date.replace(/_/g, "-"); // puts it back in the DB Format
