@@ -9,7 +9,7 @@
   },
   "author": "John Villegas <johnvillegas40@gmail.com>",
   "dependencies": {
-    "async": "~0.2.8",
+    "async": "~2.6.4",
     "body-parser": "^1.18.3",
     "connect-flash": "^0.1.1",
     "dotenv": "^8.2.0",
